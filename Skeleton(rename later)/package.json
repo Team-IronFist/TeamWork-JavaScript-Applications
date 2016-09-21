@@ -1,0 +1,26 @@
+{
+  "name": "team-ironfist-project",
+  "version": "1.0.0",
+  "description": "teamwork project - simple SPA application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-IronFist/TeamWork-JavaScript-Applications.git"
+  },
+  "keywords": [
+    "teamwork",
+    "ironfist",
+    "spa",
+    "js",
+    "applications"
+  ],
+  "author": "Team IronFist",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Team-IronFist/TeamWork-JavaScript-Applications/issues"
+  },
+  "homepage": "https://github.com/Team-IronFist/TeamWork-JavaScript-Applications#readme"
+}

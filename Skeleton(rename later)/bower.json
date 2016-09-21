@@ -1,0 +1,24 @@
+{
+  "name": "team-ironfist-project",
+  "description": "teamwork project - simple SPA application",
+  "main": "index.js",
+  "authors": [
+    "Team IronFist"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "teamwork",
+    "ironfist",
+    "spa",
+    "js",
+    "applications"
+  ],
+  "homepage": "https://github.com/Team-IronFist/TeamWork-JavaScript-Applications",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
