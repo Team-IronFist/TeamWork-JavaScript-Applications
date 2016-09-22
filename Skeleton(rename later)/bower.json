@@ -22,6 +22,11 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.1.0"
+    "jquery": "^3.1.0",
+    "sammy": "^0.7.6",
+    "everlive": "^1.7.2",
+    "handlebars": "^4.0.5",
+    "systemjs": "*",
+    "bootstrap": "^3.3.7"
   }
 }

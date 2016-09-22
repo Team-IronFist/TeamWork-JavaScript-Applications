@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iron Fist Forum</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+</head>
+
+<body>
+  <div id="content">
+    
+  </div>
+
+  <footer class="footer">
+        <div class="container">
+          <ul>
+            <li>
+              <a href="https://github.com/Team-IronFist/TeamWork-JavaScript-Applications">Github</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+
+  <!-- TO DO IMPORT WITH SYSTEMJS-->
+  <!-- Libraries -->
+<script src="bower_components/everlive/min/everlive.all.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/sammy/lib/sammy.js"></script>
+<script src="bower_components/handlebars/handlebars.js"></script>
+
+<!-- Application: Controllers -->
+<script src="scripts/controllers/home-controller.js"></script>
+<script src="scripts/controllers/users-controller.js"></script>
+
+<!-- Apllication SetUp -->
+<script src="scripts/app.js"></script>
+<script src="scripts/models/user.js"></script>
+<script src="scripts/template.js"></script>
+<script src="scripts/templates/home.handlebars"></script>
+    <!--<script src="./../node_modules/systemjs/dist/system.js"></script>-->
+    <!-- <script>
+        SystemJS.config({
+            'transpiler': 'plugin-babel',
+            'map': {
+                'plugin-babel': './../node_modules/systemjs-plugin-babel/plugin-babel.js',
+                'systemjs-babel-build': './../node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
+                'jquery': './../bower_components/jquery/dist/jquery.js',
+                'index':'./scripts/index.js'
+            }
+        });
+    </script>
+
+    <script>
+        System.import('index');
+    </script> -->
+</body>
+
+</html>
