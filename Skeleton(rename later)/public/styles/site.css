@@ -1,0 +1,38 @@
+body{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+5,d1d1d1+60,d1d1d1+83,e2e2e2+100 */
+  background: #fefefe; /* Old browsers */
+  background: -moz-linear-gradient(top,  #fefefe 5%, #d1d1d1 60%, #d1d1d1 83%, #e2e2e2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #fefefe 5%,#d1d1d1 60%,#d1d1d1 83%,#e2e2e2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #fefefe 5%,#d1d1d1 60%,#d1d1d1 83%,#e2e2e2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-9 */
+}
+#loadingBox {
+    background-color: red;
+    border-radius: 5px 10px;
+    width: 500px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+#infoBox {
+    background-color: #0216ff;
+    border-radius: 5px 10px;
+    width: 300px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+#errorBox {
+    background-color: #22ff00;
+    border-radius: 5px 10px;
+    width: 80%;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+#errorBox, #infoBox, #loadingBox {
+    display: none;
+}
+#errorBox, #infoBox, #loadingBox :hover{
+  cursor: pointer;
+}

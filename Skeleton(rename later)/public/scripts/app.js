@@ -1,7 +1,7 @@
 (function() {
 var sammyApp = Sammy('#content', function() {
 
-  this.get('#/', homeController.all);
+  this.get('#/home', homeController.all);
 
   this.get('#/login', usersController.login);
   this.get('#/register', usersController.register);
@@ -15,6 +15,7 @@ var sammyApp = Sammy('#content', function() {
   //this.get('#/comment/delete', commentsController.delete);
 
   //this.get('#/events', eventsController.all);
+  this.get('#/contact', contactController.all);
 });
 
 $(function() {

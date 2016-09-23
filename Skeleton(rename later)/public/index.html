@@ -5,13 +5,32 @@
     <meta charset="UTF-8">
     <title>Iron Fist Forum</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/site.css">
 
 </head>
 
 <body>
-  <div id="content">
-    
-  </div>
+  <header class="nav navbar">
+        <div class="container">
+            <h1 class="text-center">IRON FIST FORUM</h1>
+        </div>
+        <nav class="navbar navbar-default">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/posts">Posts</a></li>
+                <li><a href="#/login">Login</a></li>
+                <li><a href="#/register">Register</a></li>
+                <li><a href="#/logout">Logout</a></li>
+                <li><a href="#/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+  <section id="loadingBox">Loading...</section>
+  <section id="infoBox" onclick="$(this).hide()">Info</section>
+  <section id="errorBox" onclick="$(this).hide()">Error</section>
+  <section id="content" class="container text-center">
+
+  </section>
 
   <footer class="footer">
         <div class="container">
@@ -33,12 +52,14 @@
 <!-- Application: Controllers -->
 <script src="scripts/controllers/home-controller.js"></script>
 <script src="scripts/controllers/users-controller.js"></script>
+<script src="scripts/controllers/contact-controller.js"></script>
 
 <!-- Apllication SetUp -->
 <script src="scripts/app.js"></script>
 <script src="scripts/models/user.js"></script>
 <script src="scripts/template.js"></script>
 <script src="scripts/templates/home.handlebars"></script>
+<script src="scripts/templates/contact.handlebars"></script>
     <!--<script src="./../node_modules/systemjs/dist/system.js"></script>-->
     <!-- <script>
         SystemJS.config({
