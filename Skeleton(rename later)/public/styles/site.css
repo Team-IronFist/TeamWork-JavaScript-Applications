@@ -7,7 +7,7 @@ body{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-9 */
 }
 #loadingBox {
-    background-color: red;
+    background-color: blue;
     border-radius: 5px 10px;
     width: 500px;
     color: white;
@@ -15,7 +15,7 @@ body{
     padding: 5px;
 }
 #infoBox {
-    background-color: #0216ff;
+    background-color: green;
     border-radius: 5px 10px;
     width: 300px;
     color: white;
@@ -23,7 +23,7 @@ body{
     padding: 5px;
 }
 #errorBox {
-    background-color: #22ff00;
+    background-color: red;
     border-radius: 5px 10px;
     width: 80%;
     color: white;

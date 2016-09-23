@@ -1,10 +1,15 @@
 function createUser(){
   class User {
-    constructor(username, displayName, password, email) {
+    constructor(id, username, displayName, password, email) {
+      this._id = id;
       this._username = username;
       this._displayName = displayName;
       this._password = password;
       this._email = email;
+    }
+
+    get Id(){
+      return this._id;
     }
 
     get Username(){
@@ -37,8 +42,8 @@ function createUser(){
 
   }
   return {
-    getUser: function (username, displayName, password, email){
-      return new User(username, displayName, password, email)
+    getUser: function (id, username, displayName, password, email){
+      return new User(id, username, displayName, password, email)
       }
     }
 }

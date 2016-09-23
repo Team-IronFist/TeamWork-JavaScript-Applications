@@ -12,10 +12,19 @@ var usersController = function() {
           let password = $('#tb-login-password').val();
           dataAccess.authentication.login(username, password,
             function (data) {
+              const successfullLoginMessage = "Logged in successfully";
+              $('#loadingBox').show();
+              $('#infoBox').text(successfullLoginMessage)
+                .show()
+                .delay(5000)
+                .fadeOut();
+              $('#loadingBox').hide();
               console.log((JSON.stringify(data)));
             },
             function(error){
-              console.log((JSON.stringify(data)));
+              let errorMessage = error.message;
+              $('#errorBox').text(errorMessage)
+              .show();
             });
         });
       });
@@ -31,18 +40,29 @@ var usersController = function() {
             let password = $('#tb-password').val();
             let displayName = $('#tb-display-name').val();
             let email = $('#tb-email').val();
-            var module = createUser();
-            let user = module.getUser(username, password, displayName, email);
+
             let attributes = {
-                  Email: user.EMail,
-                  DisplayName: user.DisplayName
+                Email: email,
+                DisplayName: displayName
             };
             dataAccess.Users.register(username, password, attributes,
               function(data) {
-                console.log((JSON.stringify(data)));
+                let id = data.result.Id;
+                var module = createUser();
+                let user = module.getUser(id, username, displayName, password, email);
+                console.log(user);
+                const successfullRegistrationMessage = "Your registration was successful";
+                $('#loadingBox').show();
+                $('#infoBox').text(successfullRegistrationMessage)
+                  .show()
+                  .delay(5000)
+                  .fadeOut();
+                $('#loadingBox').hide();
               },
               function(error) {
-                console.log((JSON.stringify(error)));
+                let errorMessage = error.message;
+                $('#errorBox').text(errorMessage)
+                .show();
               });
           });
         });
