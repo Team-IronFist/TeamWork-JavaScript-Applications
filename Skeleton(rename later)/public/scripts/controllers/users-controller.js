@@ -1,6 +1,7 @@
 var usersController = function() {
-  const authenticationKey = 'zhumgwq8m2cn6p2e';
-  let dataAccess = new Everlive(authenticationKey);
+  const Authentication_Key = 'zhumgwq8m2cn6p2e';
+  const Administrator_Role_Hash = '372d6b60-8102-11e6-9eb4-3157f6092d16';
+  let dataAccess = new Everlive(Authentication_Key);
 
 
   function login(context) {
@@ -24,10 +25,16 @@ var usersController = function() {
               //Display currentUser
               dataAccess.Users.currentUser()
                   .then(function (data) {
+                    console.log(data.result);
                     if (username) {
                       $('#span-username').text(data.result.DisplayName);
                       $('#logout').addClass('hidden');
+                      $('#link-register').addClass('hidden');
+                      $('#link-login').addClass('hidden');
                       $('#logout').removeClass('hidden');
+                    }
+                    if (data.result.Role === Administrator_Role_Hash) {
+                      $('#link-settings').removeClass('hidden');
                     }
                   },
                   function(error){

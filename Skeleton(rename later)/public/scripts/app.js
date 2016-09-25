@@ -3,10 +3,10 @@ var sammyApp = Sammy('#content', function() {
 
   this.get('#/home', homeController.all);
 
+  this.get('#/register', usersController.register);
   this.get('#/login', usersController.login);
   this.get('#/change-password', usersController.changePassword);
 
-  this.get('#/register', usersController.register);
 
   this.get('#/posts', postController.all);
   this.get('#/posts/create', postController.create);
@@ -18,6 +18,8 @@ var sammyApp = Sammy('#content', function() {
 
   //this.get('#/events', eventsController.all);
   this.get('#/contact', contactController.all);
+  this.get('#/settings', settingsController.all);
+  //this.get('#/settings', settingsController.users);
 });
 
 $(function() {
@@ -45,5 +47,8 @@ function checkForLoggedUser() {
       .delay(5000)
       .fadeOut();
     $('#loadingBox').hide();
+    $('#link-register').removeClass('hidden');
+    $('#link-login').removeClass('hidden');
+    //$('#link-settings').addClass('hidden');
   });
 }());

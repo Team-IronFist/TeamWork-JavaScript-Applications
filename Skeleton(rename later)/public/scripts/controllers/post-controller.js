@@ -1,6 +1,6 @@
 var postController = function() {
-  const authenticationKey = 'zhumgwq8m2cn6p2e';
-  let dataAccess = new Everlive(authenticationKey);
+  const Authentication_Key = 'zhumgwq8m2cn6p2e';
+  let dataAccess = new Everlive(Authentication_Key);
 
   function all(context) {
     templates.get('posts')
