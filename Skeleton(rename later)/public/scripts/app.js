@@ -6,8 +6,8 @@ var sammyApp = Sammy('#content', function() {
   this.get('#/login', usersController.login);
   this.get('#/register', usersController.register);
 
-  //this.get('#/post', postsController.all);
-  //this.get('#/post/add', postsController.add);
+  this.get('#/posts', postController.all);
+  this.get('#/posts/create', postController.create);
   //this.get('#/post/delete', postsController.delete);
 
   //this.get('#/comment', commentsController.all);
