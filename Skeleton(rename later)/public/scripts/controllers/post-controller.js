@@ -2,13 +2,21 @@ var postController = function() {
   const authenticationKey = 'zhumgwq8m2cn6p2e';
   let dataAccess = new Everlive(authenticationKey);
 
-
-
   function all(context) {
     templates.get('posts')
       .then(function(template){
         context.$element().html(template)
+
+        let allposts = dataAccess.data('Post');
+        allposts.get()
+            .then(function(data){
+              console.log(JSON.stringify(data));
+            },
+            function(error){
+                console.log(JSON.stringify(error));
+            });
       });
+      return currentposts;
   }
 
   function create(context) {
@@ -20,7 +28,7 @@ var postController = function() {
           let postTitle = $('#post-title').val();
           let postDescription = $('#post-description').val();
           let author = document.getElementById('span-username').innerHTML;
-          
+
           let newPost = dataAccess.data('Post');
           newPost.create({
               'Title' : postTitle,

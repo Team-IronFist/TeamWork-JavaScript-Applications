@@ -31,6 +31,5 @@ function checkForLoggedUser() {
           $('#logout').removeClass('hidden');
         }
       });
-      };
-
+    };
 }());
