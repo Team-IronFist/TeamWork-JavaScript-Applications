@@ -10,6 +10,7 @@ var usersController = function() {
         $('#btn-login').on('click', function(){
           let username = $('#tb-login-username').val();
           let password = $('#tb-login-password').val();
+
           dataAccess.authentication.login(username, password,
             function (data) {
               const successfullLoginMessage = "Logged in successfully";
@@ -24,7 +25,6 @@ var usersController = function() {
               dataAccess.Users.currentUser()
                   .then(function (data) {
                     if (username) {
-                      debugger;
                       $('#span-username').text(data.result.DisplayName);
                       $('#logout').addClass('hidden');
                       $('#logout').removeClass('hidden');
