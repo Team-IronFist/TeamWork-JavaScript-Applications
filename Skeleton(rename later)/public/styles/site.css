@@ -1,10 +1,10 @@
 body{
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+5,d1d1d1+60,d1d1d1+83,e2e2e2+100 */
-  background: #fefefe; /* Old browsers */
-  background: -moz-linear-gradient(top,  #fefefe 5%, #d1d1d1 60%, #d1d1d1 83%, #e2e2e2 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  #fefefe 5%,#d1d1d1 60%,#d1d1d1 83%,#e2e2e2 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  #fefefe 5%,#d1d1d1 60%,#d1d1d1 83%,#e2e2e2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-9 */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,eeeeee+100;Grey+Flat */
+  background: #eeeeee; /* Old browsers */
+  background: -moz-linear-gradient(top,  #eeeeee 0%, #eeeeee 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #eeeeee 0%,#eeeeee 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #eeeeee 0%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
 }
 #loadingBox {
     background-color: blue;

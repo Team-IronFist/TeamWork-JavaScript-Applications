@@ -2,9 +2,9 @@
 var sammyApp = Sammy('#content', function() {
 
   this.get('#/home', homeController.all);
-  console.log(this);
+
   this.get('#/login', usersController.login);
-  this.get('#/', usersController.logout);
+  this.get('#/change-password', usersController.changePassword);
 
   this.get('#/register', usersController.register);
 

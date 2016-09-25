@@ -13,9 +13,9 @@ var usersController = function() {
 
           dataAccess.authentication.login(username, password,
             function (data) {
-              const successfullLoginMessage = "Logged in successfully";
+              const Successful_Login_Message = "Logged in successfully";
               $('#loadingBox').show();
-              $('#infoBox').text(successfullLoginMessage)
+              $('#infoBox').text(Successful_Login_Message)
                 .show()
                 .delay(5000)
                 .fadeOut();
@@ -66,9 +66,9 @@ var usersController = function() {
                 var module = createUser();
                 let user = module.getUser(id, username, displayName, password, email);
                 console.log(user);
-                const successfullRegistrationMessage = "Your registration was successful";
+                const Successful_Registration_Message = "Your registration was successful";
                 $('#loadingBox').show();
-                $('#infoBox').text(successfullRegistrationMessage)
+                $('#infoBox').text(Successful_Registration_Message)
                   .show()
                   .delay(5000)
                   .fadeOut();
@@ -87,8 +87,42 @@ var usersController = function() {
 
   }
 
+  function changePassword(context) {
+    templates.get('change-password')
+      .then(function(template){
+        context.$element().html(template);
+      let username,
+          password,
+          newPassword;
+
+      $('#btn-change-password').on('click', function(){
+            username = $('#tb-current-username').val();
+            password = $('#tb-current-password').val();
+            newPassword = $('#tb-new-password').val();
+        dataAccess.Users.changePassword(username, // username
+            password, // current password
+            newPassword, // new password
+            true, // keep the user's tokens
+            function (data) {
+                console.log(JSON.stringify(data));
+                const Successful_Change_Password_Message = "Your password has been changed successfully";
+                $('#loadingBox').show();
+                $('#infoBox').text(Successful_Change_Password_Message)
+                  .show()
+                  .delay(5000)
+                  .fadeOut();
+                $('#loadingBox').hide();
+            },
+            function(error){
+                console.log(JSON.stringify(error));
+            });
+      });
+
+    });
+  }
   return {
     register: register,
-    login: login
+    login: login,
+    changePassword: changePassword
   };
 }();
