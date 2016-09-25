@@ -19,6 +19,21 @@ var usersController = function() {
                 .delay(5000)
                 .fadeOut();
               $('#loadingBox').hide();
+
+              //Display currentUser
+              dataAccess.Users.currentUser()
+                  .then(function (data) {
+                    if (username) {
+                      debugger;
+                      $('#span-username').text(data.result.DisplayName);
+                      $('#logout').addClass('hidden');
+                      $('#logout').removeClass('hidden');
+                    }
+                  },
+                  function(error){
+                      console.log(JSON.stringify(error));
+                  });
+
               console.log((JSON.stringify(data)));
             },
             function(error){
@@ -66,6 +81,10 @@ var usersController = function() {
               });
           });
         });
+  }
+
+  function facebookLogin(context){
+
   }
 
   return {

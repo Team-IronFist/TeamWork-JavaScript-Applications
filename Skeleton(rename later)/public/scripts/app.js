@@ -21,4 +21,16 @@ var sammyApp = Sammy('#content', function() {
 $(function() {
   sammyApp.run('#/');
 });
+
+function checkForLoggedUser() {
+    dataAccess.Users.currentUser()
+      .then((user) => {
+        if (user) {
+          $('#span-username').text(user);
+          $('#logout').addClass('hidden');
+          $('#logout').removeClass('hidden');
+        }
+      });
+      };
+
 }());
