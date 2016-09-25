@@ -2,8 +2,10 @@
 var sammyApp = Sammy('#content', function() {
 
   this.get('#/home', homeController.all);
-
+  console.log(this);
   this.get('#/login', usersController.login);
+  this.get('#/', usersController.logout);
+
   this.get('#/register', usersController.register);
 
   this.get('#/posts', postController.all);
@@ -32,4 +34,16 @@ function checkForLoggedUser() {
         }
       });
     };
+
+  // event for logout
+  $('#btn-logout').on('click', function(){
+    $('#logout').addClass('hidden');
+    const successfulLogoutMessage = "You have Logged out successfully";
+    $('#loadingBox').show();
+    $('#infoBox').text(successfulLogoutMessage)
+      .show()
+      .delay(5000)
+      .fadeOut();
+    $('#loadingBox').hide();
+  });
 }());
