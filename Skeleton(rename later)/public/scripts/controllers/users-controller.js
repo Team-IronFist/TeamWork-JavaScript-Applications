@@ -25,7 +25,8 @@ var usersController = function() {
               //Display currentUser
               dataAccess.Users.currentUser()
                   .then(function (data) {
-                    console.log(data.result);
+                    localStorage.setItem("username", data.result.Username);
+                    localStorage.setItem("authKey", data.result.Id);
                     if (username) {
                       $('#span-username').text(data.result.DisplayName);
                       $('#logout').addClass('hidden');

@@ -1,8 +1,22 @@
-<h1>TO DO:Display Users data</h1>
 <a href="#/settings" id="users">View all users</a>
-<div class="headers">
-  <span>Username</span>
-  <span>E-mail</span>
-  <span>Role</span>
-  <span>Date of registration</span>
-</div>
+<table>
+  <tr class="container">
+    <th>User (username)</th>
+    <th>E-mail</th>
+    <th>Created at</th>
+    <th>Modified at</th>
+    <th></th>
+  </tr>
+  {{#each this}}
+  <tr class="container">
+    <td><a href="#">{{this.DisplayName}}</a>({{this.Username}})</td>
+    <td>{{this.Email}}</td>
+    <td>{{this.CreatedAt}}</td>
+    <td>{{this.ModifiedAt}}</td>
+    <td>
+      <a href="#">Edit</a>
+      <a href="#">Delete</a>
+    </td>
+  </div>
+  {{/each}}
+</table>

@@ -31,7 +31,6 @@ function checkForLoggedUser() {
       .then((user) => {
         if (user) {
           $('#span-username').text(user);
-          $('#logout').addClass('hidden');
           $('#logout').removeClass('hidden');
         }
       });
@@ -39,6 +38,8 @@ function checkForLoggedUser() {
 
   // event for logout
   $('#btn-logout').on('click', function(){
+    localStorage.removeItem("username");
+    localStorage.removeItem("authKey");
     $('#logout').addClass('hidden');
     const successfulLogoutMessage = "You have Logged out successfully";
     $('#loadingBox').show();
