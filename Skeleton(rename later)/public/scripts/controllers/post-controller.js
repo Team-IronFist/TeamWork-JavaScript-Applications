@@ -3,20 +3,21 @@ var postController = function() {
   let dataAccess = new Everlive(Authentication_Key);
 
   function all(context) {
-    templates.get('posts')
-      .then(function(template){
-        context.$element().html(template)
-
-        let allposts = dataAccess.data('Post');
-        allposts.get()
+        let allposts = {};
+        let queryPosts = dataAccess.data('Post');
+        queryPosts.get()
             .then(function(data){
-              console.log(JSON.stringify(data));
+              allposts = data.result;
+              console.log(JSON.stringify(data.result));
+              templates.get('posts')
+                .then(function(template){
+                  context.$element().html(template(allposts));
             },
             function(error){
                 console.log(JSON.stringify(error));
             });
+
       });
-      return currentposts;
   }
 
   function create(context) {

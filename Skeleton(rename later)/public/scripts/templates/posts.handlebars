@@ -1,1 +1,23 @@
-<h1>Just for test</h1>
+<table>
+  <tr class="container">
+    <th>Title</th>
+    <th>Description</th>
+    <th>Author</th>
+    <th>Created at</th>
+    <th>Modified at</th>
+    <th></th>
+  </tr>
+  {{#each this}}
+  <tr class="container">
+    <td>{{this.Title}}</td>
+    <td>{{this.Description}}</td>
+    <td>{{this.Author}}</td>
+    <td>{{this.CreatedAt}}</td>
+    <td>{{this.ModifiedAt}}</td>
+    <td>
+      <a href="#">Edit</a>
+      <a href="#">Delete</a>
+    </td>
+  </div>
+  {{/each}}
+</table>
