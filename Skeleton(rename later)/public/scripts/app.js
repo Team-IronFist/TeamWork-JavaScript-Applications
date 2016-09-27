@@ -7,7 +7,7 @@ import {usersController} from './controllers/users-controller.js'
 (function () {
   var sammyApp = Sammy('#content', function () {
 
-    this.get('/#/', homeController.all);
+    this.get('#/', homeController.all);
     this.get('#/home', homeController.all);
 
     this.get('#/register', usersController.register);

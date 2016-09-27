@@ -11,7 +11,8 @@ var usersController = function() {
     templates.get('login')
       .then(function(template){
         context.$element().html(template)
-        $('#btn-login').on('click', function(){
+
+        let tryToLog = function(){
           let username = $('#tb-login-username').val();
           let password = $('#tb-login-password').val();
 
@@ -53,7 +54,14 @@ var usersController = function() {
               $('#errorBox').text(errorMessage)
               .show();
             });
-        });
+        }
+
+        $('#btn-login').on('click', tryToLog);
+        $('#tb-login-password').on('keydown', function(ev){
+          if(ev.which == 13 || ev.keycode == 13){
+            tryToLog();
+          }
+        })
       });
   };
 
