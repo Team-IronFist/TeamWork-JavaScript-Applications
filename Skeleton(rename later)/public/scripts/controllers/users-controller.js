@@ -8,55 +8,59 @@ var usersController = function () {
   const Successful_Login_Message = "Logged in successfully";
   const Successful_Registration_Message = "Your registration was successful";
   const Successful_Change_Password_Message = "Your password has been changed successfully";
-  
+
   let dataAccess = new Everlive(Authentication_Key);
+
+  let tryToLog = function (username, password) {
+    dataAccess.authentication.login(username, password,
+      function (data) {
+        popup('#infoBox', Successful_Login_Message);
+        document.location = '#/home'
+
+        //Display currentUser
+        dataAccess.Users.currentUser()
+          .then(function (data) {
+            localStorage.setItem("username", data.result.Username);
+            localStorage.setItem("authKey", data.result.Id);
+            if (username) {
+              $('#span-username').text(data.result.DisplayName);
+              $('#logout').addClass('hidden');
+              $('#link-register').addClass('hidden');
+              $('#link-login').addClass('hidden');
+              $('#logout').removeClass('hidden');
+            }
+            if (data.result.Role === Administrator_Role_Hash) {
+              $('#link-settings').removeClass('hidden');
+            }
+          },
+          function (error) {
+            popup('#errorBox', error.message);
+            console.log(JSON.stringify(error));
+          });
+
+        console.log((JSON.stringify(data)));
+      },
+      function (error) {
+        popup('#errorBox', error.message);
+      });
+  }
 
   function login(context) {
     templates.get('login')
       .then(function (template) {
         context.$element().html(template)
 
-        let tryToLog = function () {
+        $('#btn-login').on('click', function () {
           let username = $('#tb-login-username').val();
           let password = $('#tb-login-password').val();
-
-          dataAccess.authentication.login(username, password,
-            function (data) {
-              popup('#infoBox', Successful_Login_Message);
-              document.location = '#/home'
-
-              //Display currentUser
-              dataAccess.Users.currentUser()
-                .then(function (data) {
-                  localStorage.setItem("username", data.result.Username);
-                  localStorage.setItem("authKey", data.result.Id);
-                  if (username) {
-                    $('#span-username').text(data.result.DisplayName);
-                    $('#logout').addClass('hidden');
-                    $('#link-register').addClass('hidden');
-                    $('#link-login').addClass('hidden');
-                    $('#logout').removeClass('hidden');
-                  }
-                  if (data.result.Role === Administrator_Role_Hash) {
-                    $('#link-settings').removeClass('hidden');
-                  }
-                },
-                function (error) {
-                  popup('#errorBox', error.message);
-                  console.log(JSON.stringify(error));
-                });
-
-              console.log((JSON.stringify(data)));
-            },
-            function (error) {
-              popup('#errorBox', error.message);
-            });
-        }
-
-        $('#btn-login').on('click', tryToLog);
+          tryToLog(username, password);
+        });
         $('#tb-login-password').on('keydown', function (ev) {
           if (ev.which == 13 || ev.keycode == 13) {
-            tryToLog();
+
+            let username = $('#tb-login-username').val();
+            let password = $('#tb-login-password').val();
+            tryToLog(username, password);
           }
         })
       });
@@ -85,6 +89,7 @@ var usersController = function () {
 
               console.log(user);
               popup('#infoBox', Successful_Registration_Message);
+              tryToLog(username, password);
             },
             function (error) {
               popup('#errorBox', error.message)
