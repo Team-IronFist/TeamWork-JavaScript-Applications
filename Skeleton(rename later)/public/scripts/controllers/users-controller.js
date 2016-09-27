@@ -104,7 +104,7 @@ var usersController = function() {
   }
 
   function facebookLogin(context){
-
+    
   }
 
   function changePassword(context) {
@@ -140,6 +140,7 @@ var usersController = function() {
 
     });
   }
+
   return {
     register: register,
     login: login,

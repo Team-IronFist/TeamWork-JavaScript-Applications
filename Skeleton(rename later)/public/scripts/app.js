@@ -26,6 +26,10 @@ import {usersController} from './controllers/users-controller.js'
     //this.get('#/events', eventsController.all);
     this.get('#/contact', contactController.all);
     this.get('#/settings', settingsController.all);
+    this.get('#/user/:username', function(){
+      let username = this.params['username'];
+      settingsController.getUserByUserName(username);
+    })
     //this.get('#/settings', settingsController.users);
   });
 
