@@ -20,7 +20,6 @@ var settingsController = function () {
       });
   }
 
-
   function getUserByUserName(username) {
     let filter = new Everlive.Query();
     filter.where().eq("Username", username);

@@ -40,6 +40,7 @@ var postController = function () {
           },
             function (data) {
               console.log(JSON.stringify(data));
+              document.location = '#/posts';
             },
             function (error) {
               console.log(JSON.stringify(error));
