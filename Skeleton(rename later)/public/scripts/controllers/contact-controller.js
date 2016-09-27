@@ -1,16 +1,44 @@
 import {templates} from './../template.js'
 
-var contactController = function() {
+var contactController = function () {
+  const hardcoded = [
+    {
+      name: 'Alexander Nestorov',
+      taUser: 'Alexander.N',
+      git: 'https://github.com/alexnestorov'
+    },
+    {
+      name: 'Kristiyan Vachev',
+      taUser: 'SexPistols',
+      git: 'https://github.com/KristiyanVachev'
+    },
+    {
+      name: 'Miroslav Nikolov',
+      taUser: 'mirko123',
+      git: 'https://github.com/mirko123'
+    },
+    {
+      name: 'Stoiko Neykov',
+      taUser: 'StoikoNeykov',
+      git: 'https://github.com/StoikoNeykov'
+    },
+    {
+      name: 'Todor Arabadzhiev',
+      taUser: 'todor_ia',
+      git: 'https://github.com/todorarabadzhiev'
+    }
+  ]
+
   function all(context) {
     templates.get('contact')
-      .then(function(template){
-        context.$element().html(template)
+      .then(function (template) {
+        context.$element().html(template(hardcoded))
       });
   }
 
   return {
     all: all
   };
-}();
+} ();
 
 export {contactController}

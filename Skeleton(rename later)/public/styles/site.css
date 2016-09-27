@@ -42,3 +42,7 @@ tr, td, th{
   padding: 10px;
   margin:10px;
 }
+
+#content {
+    min-height: 350px;
+}

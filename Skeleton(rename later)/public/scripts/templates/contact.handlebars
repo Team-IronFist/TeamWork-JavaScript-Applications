@@ -1,8 +1,9 @@
-  <h2>Team members</h2>
-  <ul>
-    <li>Stoyko Neikov</li>
-    <li>Todor Arabadzhiev</li>
-    <li>Kristiyan Vachev</li>
-    <li>Alexander Nestorov</li>
-    <li>Miroslav Nikolov</li>
+  <h2>Team members (alphabetically)</h2>
+  <ul class="list-unstyled">
+    {{#each this}}
+      <li>{{this.name}}: <a href="http://telerikacademy.com/Users/{{this.taUser}}">{{this.taUser}}</a>
+      <a href="{{this.git}}">GitHub</a>
+      </li>
+    {{/each}}
   </ul>
+  
