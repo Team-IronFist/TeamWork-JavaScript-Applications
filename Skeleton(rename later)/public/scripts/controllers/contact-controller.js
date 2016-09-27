@@ -1,3 +1,5 @@
+import {templates} from './../template.js'
+
 var contactController = function() {
   function all(context) {
     templates.get('contact')
@@ -10,3 +12,5 @@ var contactController = function() {
     all: all
   };
 }();
+
+export {contactController}

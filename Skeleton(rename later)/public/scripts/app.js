@@ -1,32 +1,38 @@
-(function() {
-var sammyApp = Sammy('#content', function() {
+import {homeController} from './controllers/home-controller.js'
+import {contactController} from './controllers/contact-controller.js'
+import {postController} from './controllers/post-controller.js'
+import {settingsController} from './controllers/settings-controller.js'
+import {usersController} from './controllers/users-controller.js'
 
-  this.get('#/home', homeController.all);
+(function () {
+  var sammyApp = Sammy('#content', function () {
 
-  this.get('#/register', usersController.register);
-  this.get('#/login', usersController.login);
-  this.get('#/change-password', usersController.changePassword);
+    this.get('#/home', homeController.all);
+
+    this.get('#/register', usersController.register);
+    this.get('#/login', usersController.login);
+    this.get('#/change-password', usersController.changePassword);
 
 
-  this.get('#/posts', postController.all);
-  this.get('#/posts/create', postController.create);
-  //this.get('#/post/delete', postsController.delete);
+    this.get('#/posts', postController.all);
+    this.get('#/posts/create', postController.create);
+    //this.get('#/post/delete', postsController.delete);
 
-  //this.get('#/comment', commentsController.all);
-  //this.get('#/comment/add', commentsController.add);
-  //this.get('#/comment/delete', commentsController.delete);
+    //this.get('#/comment', commentsController.all);
+    //this.get('#/comment/add', commentsController.add);
+    //this.get('#/comment/delete', commentsController.delete);
 
-  //this.get('#/events', eventsController.all);
-  this.get('#/contact', contactController.all);
-  this.get('#/settings', settingsController.all);
-  //this.get('#/settings', settingsController.users);
-});
+    //this.get('#/events', eventsController.all);
+    this.get('#/contact', contactController.all);
+    this.get('#/settings', settingsController.all);
+    //this.get('#/settings', settingsController.users);
+  });
 
-$(function() {
-  sammyApp.run('#/');
-});
+  $(function () {
+    sammyApp.run('#/');
+  });
 
-function checkForLoggedUser() {
+  function checkForLoggedUser() {
     dataAccess.Users.currentUser()
       .then((user) => {
         if (user) {
@@ -34,10 +40,10 @@ function checkForLoggedUser() {
           $('#logout').removeClass('hidden');
         }
       });
-    };
+  };
 
   // event for logout
-  $('#btn-logout').on('click', function(){
+  $('#btn-logout').on('click', function () {
     localStorage.removeItem("username");
     localStorage.removeItem("authKey");
     $('#logout').addClass('hidden');
@@ -52,4 +58,4 @@ function checkForLoggedUser() {
     $('#link-login').removeClass('hidden');
     //$('#link-settings').addClass('hidden');
   });
-}());
+} ());

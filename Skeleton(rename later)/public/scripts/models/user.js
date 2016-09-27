@@ -47,3 +47,5 @@ function createUser(){
       }
     }
 }
+
+export {createUser}

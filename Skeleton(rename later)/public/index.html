@@ -10,14 +10,14 @@
 </head>
 
 <body>
-  <header class="nav navbar">
+    <header class="nav navbar">
         <div class="container">
             <h1 class="text-center">IRON FIST FORUM</h1>
         </div>
         <div id="logout" class="form-group hidden">
             Hello, <a href="#"><strong id="span-username"></strong></a>
             <button id="btn-logout" type="submit" class="btn btn-default">Logout</button>
-          </div>
+        </div>
         <nav class="navbar navbar-default">
             <ul class="nav navbar-nav">
                 <li><a href="#/home">Home</a></li>
@@ -30,64 +30,39 @@
             </ul>
         </nav>
     </header>
-  <section id="loadingBox" class="navbar-default">Loading...</section>
-  <section id="infoBox" class="navbar-default" onclick="$(this).hide()">Info</section>
-  <section id="errorBox" class="navbar-default" onclick="$(this).hide()">Error</section>
-  <section id="content" class="container text-center">
+    <section id="loadingBox" class="navbar-default">Loading...</section>
+    <section id="infoBox" class="navbar-default" onclick="$(this).hide()">Info</section>
+    <section id="errorBox" class="navbar-default" onclick="$(this).hide()">Error</section>
+    <section id="content" class="container text-center">
 
-  </section>
+    </section>
 
-  <footer class="footer">
+    <footer class="footer">
         <div class="container">
-          <ul>
-            <li>
-              <a href="https://github.com/Team-IronFist/TeamWork-JavaScript-Applications">Github</a>
-            </li>
-          </ul>
+            <ul>
+                <li>
+                    <a href="https://github.com/Team-IronFist/TeamWork-JavaScript-Applications">Github</a>
+                </li>
+            </ul>
         </div>
-      </footer>
+    </footer>
 
-  <!-- TO DO IMPORT WITH SYSTEMJS-->
-  <!-- facebook authentication-->
-<!--<script src="fb-authentication.js"></script>-->
-  <!-- Libraries -->
-<script src="bower_components/everlive/min/everlive.all.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/sammy/lib/sammy.js"></script>
-<script src="bower_components/handlebars/handlebars.js"></script>
-
-<!-- Application: Controllers -->
-<script src="scripts/controllers/home-controller.js"></script>
-<script src="scripts/controllers/users-controller.js"></script>
-<script src="scripts/controllers/post-controller.js"></script>
-<script src="scripts/controllers/contact-controller.js"></script>
-<script src="scripts/controllers/settings-controller.js"></script>
-
-<!-- Apllication SetUp -->
-<script src="scripts/app.js"></script>
-<script src="scripts/models/user.js"></script>
-<script src="scripts/template.js"></script>
-<script src="scripts/templates/home.handlebars"></script>
-<script src="scripts/templates/post-create.handlebars"></script>
-<script src="scripts/templates/change-password.handlebars"></script>
-<script src="scripts/templates/contact.handlebars"></script>
-<script src="scripts/templates/settings.handlebars"></script>
-    <!--<script src="./../node_modules/systemjs/dist/system.js"></script>-->
-    <!-- <script>
-        SystemJS.config({
-            'transpiler': 'plugin-babel',
-            'map': {
-                'plugin-babel': './../node_modules/systemjs-plugin-babel/plugin-babel.js',
-                'systemjs-babel-build': './../node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
-                'jquery': './../bower_components/jquery/dist/jquery.js',
-                'index':'./scripts/index.js'
-            }
-        });
+    <script src="./../node_modules/systemjs/dist/system.js"></script>
+    <script src="./scripts/system-config.js"></script>
+    <script>
+        System.import('app');
     </script>
 
-    <script>
-        System.import('index');
-    </script> -->
+
+    <!-- TO DO IMPORT WITH SYSTEMJS-->
+    <!-- facebook authentication-->
+    <!--<script src="fb-authentication.js"></script>-->
+    <!-- Libraries -->
+    <script src="bower_components/everlive/min/everlive.all.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/sammy/lib/sammy.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+
 </body>
 
 </html>

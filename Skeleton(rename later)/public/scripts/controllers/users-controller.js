@@ -1,3 +1,6 @@
+import {templates} from './../template.js'
+import {createUser} from './../models/user.js'
+
 var usersController = function() {
   const Authentication_Key = 'zhumgwq8m2cn6p2e';
   const Administrator_Role_Hash = '372d6b60-8102-11e6-9eb4-3157f6092d16';
@@ -21,6 +24,7 @@ var usersController = function() {
                 .delay(5000)
                 .fadeOut();
               $('#loadingBox').hide();
+              document.location = '#/home'
 
               //Display currentUser
               dataAccess.Users.currentUser()
@@ -134,3 +138,5 @@ var usersController = function() {
     changePassword: changePassword
   };
 }();
+
+export {usersController}

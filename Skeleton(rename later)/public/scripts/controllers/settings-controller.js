@@ -1,3 +1,5 @@
+import {templates} from './../template.js'
+
 var settingsController = function() {
   const Authentication_Key = 'zhumgwq8m2cn6p2e';
   let dataAccess = new Everlive(Authentication_Key);
@@ -21,3 +23,5 @@ var settingsController = function() {
     all: all,
   };
 }();
+
+export {settingsController}

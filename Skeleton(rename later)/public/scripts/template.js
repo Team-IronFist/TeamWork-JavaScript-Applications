@@ -17,3 +17,5 @@ var templates = (function () {
     get: get
   };
 }());
+
+export {templates}
