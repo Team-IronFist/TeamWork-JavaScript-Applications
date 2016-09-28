@@ -163,10 +163,26 @@ var usersController = function () {
     dataAccess.Users.destroySingle({ Id: '' },
     function(){
         console.log('User successfully deleted.');
+        popup('#infoBox', Successful_Delete_User_Message);
     },
     function(error){
-        alert(JSON.stringify(error));
+        popup('#errorBox', error.message);
     })
+  }
+
+  function editUser(context){
+    templates.get('settings-edit-user')
+      .then(function (template) {
+        context.$element().html(template);
+    });
+    // TODO get from current table row username and id.
+    dataAccess.Users.updateSingle({ 'Id': '', 'DisplayName': '' },
+    function(data){
+      popup('#infoBox', Successful_Edit_User_Message);
+    },
+    function(error){
+      popup('#errorBox', error.message);
+    });
   }
 
   return {
@@ -175,7 +191,8 @@ var usersController = function () {
     logout: logout,
     changePassword: changePassword,
     getUserByUserName: getUserByUserName,
-    deleteUser: deleteUser
+    deleteUser: deleteUser,
+    editUser: editUser
   };
 } ();
 

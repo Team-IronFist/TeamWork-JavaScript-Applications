@@ -13,7 +13,6 @@ import {usersController} from './controllers/users-controller.js'
     this.get('#/register', usersController.register);
     this.get('#/login', usersController.login);
     this.get('#/change-password', usersController.changePassword);
-    this.get('#/settings/delete-user', usersController.deleteUser);
     this.get('#/cars/all', console.log('#/cars/all'));
     this.get('#/cars/add', console.log('#/cars/add'));
 
@@ -28,6 +27,9 @@ import {usersController} from './controllers/users-controller.js'
     //this.get('#/events', eventsController.all);
     this.get('#/contact', contactController.all);
     this.get('#/settings/all-users', settingsController.allUsers);
+    this.get('#/settings/delete-user', usersController.deleteUser);
+    this.get('#/settings/edit-user', usersController.editUser);
+
     this.get('#/user/:username', function () {
       let username = this.params['username'];
       settingsController.getUserByUserName(username);
