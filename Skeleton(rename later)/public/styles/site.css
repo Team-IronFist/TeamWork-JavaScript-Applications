@@ -62,3 +62,7 @@ tr, td, th{
 .form-group input{
     text-align: center;
 }
+
+#loginNav{
+    float: right;
+}
