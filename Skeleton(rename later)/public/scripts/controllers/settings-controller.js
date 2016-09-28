@@ -20,22 +20,8 @@ var settingsController = function () {
       });
   }
 
-  function getUserByUserName(username) {
-    let filter = new Everlive.Query();
-    filter.where().eq("Username", username);
-
-    dataAccess.Users.get(filter)
-      .then((data) => {
-        let selectedUser = data.result[0];
-        // TODO template for current user 
-        console.log(selectedUser)
-      });
-  }
-
-
   return {
-    all: all,
-    getUserByUserName: getUserByUserName
+    all: all
   };
 } ();
 

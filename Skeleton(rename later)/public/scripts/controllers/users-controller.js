@@ -99,7 +99,6 @@ var usersController = function () {
   }
 
   function facebookLogin(context) {
-
   }
 
   function changePassword(context) {
@@ -131,10 +130,23 @@ var usersController = function () {
       });
   }
 
+  function getUserByUserName(username) {
+    let filter = new Everlive.Query();
+    filter.where().eq("Username", username);
+
+    dataAccess.Users.get(filter)
+      .then((data) => {
+        let selectedUser = data.result[0];
+        // TODO template for current user 
+        console.log(selectedUser)
+      });
+  }
+
   return {
     register: register,
     login: login,
-    changePassword: changePassword
+    changePassword: changePassword,
+    getUserByUserName: getUserByUserName
   };
 } ();
 
