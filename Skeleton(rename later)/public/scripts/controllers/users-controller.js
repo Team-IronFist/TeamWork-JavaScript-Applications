@@ -28,6 +28,7 @@ var usersController = function () {
               $('#link-register').addClass('hidden');
               $('#link-login').addClass('hidden');
               $('#logout').removeClass('hidden');
+              $('#link-addcar').removeClass('hidden');
             }
             if (data.result.Role === Administrator_Role_Hash) {
               $('#link-settings').removeClass('hidden');
@@ -106,6 +107,7 @@ var usersController = function () {
     $('#link-register').removeClass('hidden');
     $('#link-login').removeClass('hidden');
     $('#link-settings').addClass('hidden');
+    $('#link=addcar').addClass('hidden');
   }
 
   function facebookLogin(context) {
