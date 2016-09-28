@@ -9,6 +9,8 @@ var usersController = function () {
   const Successful_Registration_Message = "Your registration was successful";
   const Successful_Change_Password_Message = "Your password has been changed successfully";
   const successfulLogoutMessage = "You have Logged out successfully";
+  const Successful_Delete_User_Message = "You have deleted this user successfully";
+  const Successful_Edit_User_Message = "You have edited this user successfully";
 
   let dataAccess = new Everlive(Authentication_Key);
 
