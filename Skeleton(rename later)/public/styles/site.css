@@ -46,3 +46,9 @@ tr, td, th{
 #content {
     min-height: 350px;
 }
+
+#logout{
+    float: right;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
