@@ -14,6 +14,8 @@ import {usersController} from './controllers/users-controller.js'
     this.get('#/login', usersController.login);
     this.get('#/change-password', usersController.changePassword);
 
+    this.get('#/cars/all', console.log('#/cars/all'));
+    this.get('#/cars/add', console.log('#/cars/add'));
 
     this.get('#/posts', postController.all);
     this.get('#/posts/create', postController.create);
