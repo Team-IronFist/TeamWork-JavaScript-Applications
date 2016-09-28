@@ -26,17 +26,18 @@ var postController = function () {
     templates.get('post-create')
       .then(function (template) {
         context.$element().html(template)
-
+        console.log(localStorage.authKey);
         $('#btn-create-post').on('click', function () {
           let postTitle = $('#post-title').val();
           let postDescription = $('#post-description').val();
-          let author = document.getElementById('span-username').innerHTML;
+          let author = localStorage.displayName;
 
           let newPost = dataAccess.data('Post');
           newPost.create({
             'Title': postTitle,
             'Description': postDescription,
-            'Author': author
+            'Author': author,
+            'AuthorId': localStorage.authKey
           },
             function (data) {
               console.log(JSON.stringify(data));

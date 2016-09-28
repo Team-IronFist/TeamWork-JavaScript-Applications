@@ -24,6 +24,7 @@ var usersController = function () {
         dataAccess.Users.currentUser()
           .then(function (data) {
             localStorage.setItem("username", data.result.Username);
+            localStorage.setItem("displayName", data.result.DisplayName);
             localStorage.setItem("authKey", data.result.Id);
             if (username) {
               $('#span-username').text(data.result.DisplayName);
