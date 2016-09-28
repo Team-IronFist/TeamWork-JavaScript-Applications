@@ -26,7 +26,7 @@ import {usersController} from './controllers/users-controller.js'
     //this.get('#/events', eventsController.all);
     this.get('#/contact', contactController.all);
     this.get('#/settings', settingsController.all);
-    this.get('#/user/:username', function(){
+    this.get('#/user/:username', function () {
       let username = this.params['username'];
       settingsController.getUserByUserName(username);
     })
@@ -48,19 +48,5 @@ import {usersController} from './controllers/users-controller.js'
   };
 
   // event for logout
-  $('#btn-logout').on('click', function () {
-    localStorage.removeItem("username");
-    localStorage.removeItem("authKey");
-    $('#logout').addClass('hidden');
-    const successfulLogoutMessage = "You have Logged out successfully";
-    $('#loadingBox').show();
-    $('#infoBox').text(successfulLogoutMessage)
-      .show()
-      .delay(5000)
-      .fadeOut();
-    $('#loadingBox').hide();
-    $('#link-register').removeClass('hidden');
-    $('#link-login').removeClass('hidden');
-    //$('#link-settings').addClass('hidden');
-  });
+  $('#btn-logout').on('click', usersController.logout);
 } ());

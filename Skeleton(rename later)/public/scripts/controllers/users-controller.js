@@ -8,6 +8,7 @@ var usersController = function () {
   const Successful_Login_Message = "Logged in successfully";
   const Successful_Registration_Message = "Your registration was successful";
   const Successful_Change_Password_Message = "Your password has been changed successfully";
+  const successfulLogoutMessage = "You have Logged out successfully";
 
   let dataAccess = new Everlive(Authentication_Key);
 
@@ -24,7 +25,6 @@ var usersController = function () {
             localStorage.setItem("authKey", data.result.Id);
             if (username) {
               $('#span-username').text(data.result.DisplayName);
-              $('#logout').addClass('hidden');
               $('#link-register').addClass('hidden');
               $('#link-login').addClass('hidden');
               $('#logout').removeClass('hidden');
@@ -98,6 +98,16 @@ var usersController = function () {
       });
   }
 
+  function logout() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("authKey");
+    $('#logout').addClass('hidden');
+    popup('#infoBox', successfulLogoutMessage)
+    $('#link-register').removeClass('hidden');
+    $('#link-login').removeClass('hidden');
+    $('#link-settings').addClass('hidden');
+  }
+
   function facebookLogin(context) {
   }
 
@@ -145,6 +155,7 @@ var usersController = function () {
   return {
     register: register,
     login: login,
+    logout: logout,
     changePassword: changePassword,
     getUserByUserName: getUserByUserName
   };
