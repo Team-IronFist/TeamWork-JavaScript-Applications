@@ -51,6 +51,18 @@ import {usersController} from './controllers/users-controller.js'
       });
   };
 
+  // event when refreshing page
+  sessionStorage.setItem("is_reloaded", true);
+
+  if (sessionStorage.getItem("is_reloaded")){
+    let autoDisplayName = localStorage.displayName;
+    if (autoDisplayName) {
+      $('#link-register').addClass('hidden');
+      $('#link-login').addClass('hidden');
+      $('#logout').removeClass('hidden');
+      $('#span-username').text(autoDisplayName);
+    }
+  };
   // event for logout
   $('#btn-logout').on('click', usersController.logout);
 } ());

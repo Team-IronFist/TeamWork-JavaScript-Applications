@@ -105,6 +105,7 @@ var usersController = function () {
   function logout() {
     localStorage.removeItem("username");
     localStorage.removeItem("authKey");
+    localStorage.removeItem("displayName");
     $('#logout').addClass('hidden');
     popup('#infoBox', successfulLogoutMessage)
     $('#link-register').removeClass('hidden');
