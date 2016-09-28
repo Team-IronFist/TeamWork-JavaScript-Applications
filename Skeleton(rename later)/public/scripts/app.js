@@ -13,7 +13,7 @@ import {usersController} from './controllers/users-controller.js'
     this.get('#/register', usersController.register);
     this.get('#/login', usersController.login);
     this.get('#/change-password', usersController.changePassword);
-
+    this.get('#/settings/delete-user', usersController.deleteUser);
     this.get('#/cars/all', console.log('#/cars/all'));
     this.get('#/cars/add', console.log('#/cars/add'));
 

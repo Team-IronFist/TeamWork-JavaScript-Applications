@@ -149,9 +149,24 @@ var usersController = function () {
     dataAccess.Users.get(filter)
       .then((data) => {
         let selectedUser = data.result[0];
-        // TODO template for current user 
+        // TODO template for current user
         console.log(selectedUser)
       });
+  }
+
+  function deleteUser(context){
+    templates.get('settings-delete-user')
+      .then(function (template) {
+        context.$element().html(template);
+    });
+    // TODO get from current table row username and id.
+    dataAccess.Users.destroySingle({ Id: '' },
+    function(){
+        console.log('User successfully deleted.');
+    },
+    function(error){
+        alert(JSON.stringify(error));
+    })
   }
 
   return {
@@ -159,7 +174,8 @@ var usersController = function () {
     login: login,
     logout: logout,
     changePassword: changePassword,
-    getUserByUserName: getUserByUserName
+    getUserByUserName: getUserByUserName,
+    deleteUser: deleteUser
   };
 } ();
 

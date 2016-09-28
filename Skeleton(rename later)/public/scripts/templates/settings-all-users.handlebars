@@ -1,6 +1,7 @@
 <table>
   <tr class="container">
     <th>User (username)</th>
+    <th class="hidden">Password</th>
     <th>E-mail</th>
     <th>Created at</th>
     <th>Modified at</th>
@@ -9,12 +10,13 @@
   {{#each this}}
   <tr class="container">
     <td><a href="#">{{this.DisplayName}}</a>({{this.Username}})</td>
+    <td class="hidden" id="idToDelete">{{this.Id}}</td>
     <td>{{this.Email}}</td>
     <td>{{this.CreatedAt}}</td>
     <td>{{this.ModifiedAt}}</td>
     <td>
       <a href="#">Edit</a>
-      <a href="#">Delete</a>
+      <a id="delete" href="#/settings/delete-user">Delete</a>
     </td>
   </div>
   {{/each}}
