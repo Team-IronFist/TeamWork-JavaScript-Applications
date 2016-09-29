@@ -3,8 +3,8 @@ import {popup} from './popup-controller.js'
 
 var carController = function () {
 
-    const Authentication_Key = 'zhumgwq8m2cn6p2e';
-    const dataAccess = new Everlive(Authentication_Key);
+    // const Authentication_Key = 'zhumgwq8m2cn6p2e';
+    // const dataAccess = new Everlive(Authentication_Key);
 
     function all(context) {
         let allCars = [];

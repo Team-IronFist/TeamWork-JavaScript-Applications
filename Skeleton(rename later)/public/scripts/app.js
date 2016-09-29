@@ -18,7 +18,8 @@ import {usersController} from './controllers/users-controller.js'
 
     this.get('#/posts', postController.all);
     this.get('#/posts/create', postController.create);
-    //this.get('#/post/delete', postsController.delete);
+    this.get('#/posts/remove/:id', postController.remove);
+    this.get('#/posts/edit/:id', postController.edit);
 
     //this.get('#/comment', commentsController.all);
     //this.get('#/comment/add', commentsController.add);

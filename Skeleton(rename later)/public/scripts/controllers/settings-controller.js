@@ -1,23 +1,21 @@
 import {templates} from './../template.js'
+import { getAllUsers } from '../data.js'
 
 var settingsController = function () {
-  const Authentication_Key = 'zhumgwq8m2cn6p2e';
-  let dataAccess = new Everlive(Authentication_Key);
 
   function allUsers(context) {
     let allUsers = {};
-    dataAccess.Users.get()
-      .then(function (data) {
-        allUsers = data.result;
-        templates.get('settings-all-users')
-          .then(function (template) {
-            context.$element().html(template(allUsers));
-          });
-        console.log(JSON.stringify(allUsers));
-      },
-      function (error) {
-        console.log(JSON.stringify(error));
-      });
+    getAllUsers()
+        .then((data) => {
+            allUsers = data.result;
+            templates.get('settings-all-users')
+            .then(function (template) {
+                context.$element().html(template(allUsers));
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
   }
 
   return {
