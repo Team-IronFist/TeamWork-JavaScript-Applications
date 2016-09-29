@@ -3,7 +3,7 @@ import {createUser} from './../models/user.js'
 import {popup} from './popup-controller.js'
 import {
     registerUser, logUser, userChangePassword, userLogOut,
-    userByUserName, userDelete, userEdit, Administrator_Role_Hash
+    userByUserName, userDelete, userEdit, Administrator_Role_Hash, getCurrentUser
 } from '../data.js'
 
 var usersController = function () {
@@ -74,7 +74,7 @@ var usersController = function () {
             Email: email,
             DisplayName: displayName
           };
-          
+
           registerUser(username, password, attributes)
             .then(() => {
                 popup('#infoBox', Successful_Registration_Message);
@@ -87,7 +87,7 @@ var usersController = function () {
         });
       });
   }
-  
+
   function removeDataFromLocalStorage() {
     userLogOut();
     localStorage.removeItem("username");
@@ -95,7 +95,7 @@ var usersController = function () {
     localStorage.removeItem("displayName");
     localStorage.removeItem("accessToken");
   }
-  
+
   function logout() {
     removeDataFromLocalStorage();
     $('#logout').addClass('hidden');
@@ -143,7 +143,7 @@ var usersController = function () {
       .then(function (template) {
         context.$element().html(template);
     });
-    
+
     let id = 1;// TODO get from current table row username and id.
     userDelete(id)
         .then(() => {
@@ -160,7 +160,7 @@ var usersController = function () {
       .then(function (template) {
         context.$element().html(template);
     });
-    
+
     let id = 1;// TODO get from current table row username and id.
     let displayName = '';// TODO get from current table row username and id.
     userEdit(id, displayName)
@@ -173,6 +173,14 @@ var usersController = function () {
         });
   }
 
+  function displayUser(context){
+    //TODO getCurrentUser;
+    templates.get('user-info')
+      .then(function (template) {
+        context.$element().html(template);
+    });
+  }
+
   return {
     register,
     login,
@@ -180,7 +188,8 @@ var usersController = function () {
     changePassword,
     getUserByUserName,
     deleteUser,
-    editUser
+    editUser,
+    displayUser
   };
 } ();
 
