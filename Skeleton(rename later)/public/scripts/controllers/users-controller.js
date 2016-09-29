@@ -2,13 +2,11 @@ import {templates} from './../template.js'
 import {createUser} from './../models/user.js'
 import {popup} from './popup-controller.js'
 import {
-    registerUser, logUser, userChangePassword,
-    userByUserName, userDelete, userEdit 
+    registerUser, logUser, userChangePassword, userLogOut,
+    userByUserName, userDelete, userEdit, Administrator_Role_Hash
 } from '../data.js'
 
 var usersController = function () {
-//   const Authentication_Key = 'zhumgwq8m2cn6p2e';
-  const Administrator_Role_Hash = '372d6b60-8102-11e6-9eb4-3157f6092d16';
   const Successful_Login_Message = "Logged in successfully";
   const Successful_Registration_Message = "Your registration was successful";
   const Successful_Change_Password_Message = "Your password has been changed successfully";
@@ -89,12 +87,17 @@ var usersController = function () {
         });
       });
   }
-
-  function logout() {
+  
+  function removeDataFromLocalStorage() {
+    userLogOut();
     localStorage.removeItem("username");
     localStorage.removeItem("authKey");
     localStorage.removeItem("displayName");
     localStorage.removeItem("accessToken");
+  }
+  
+  function logout() {
+    removeDataFromLocalStorage();
     $('#logout').addClass('hidden');
     popup('#infoBox', successfulLogoutMessage)
     $('#link-register').removeClass('hidden');
@@ -171,13 +174,13 @@ var usersController = function () {
   }
 
   return {
-    register: register,
-    login: login,
-    logout: logout,
-    changePassword: changePassword,
-    getUserByUserName: getUserByUserName,
-    deleteUser: deleteUser,
-    editUser: editUser
+    register,
+    login,
+    logout,
+    changePassword,
+    getUserByUserName,
+    deleteUser,
+    editUser
   };
 } ();
 

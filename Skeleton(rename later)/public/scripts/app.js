@@ -66,4 +66,8 @@ import {usersController} from './controllers/users-controller.js'
   };
   // event for logout
   $('#btn-logout').on('click', usersController.logout);
+  
+//   window.onbeforeunload = function() {
+//       usersController.logout();
+//   }
 } ());

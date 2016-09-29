@@ -2,7 +2,7 @@ import {templates} from './../template.js'
 import {popup} from './popup-controller.js'
 import { 
     getCurrentUser, postsGetAll, postCreate, postGetById, 
-    postDeleteById, postEditById 
+    postDeleteById, postEditById, Administrator_Role_Hash
 } from '../data.js'
 
 var postController = function () {
@@ -26,23 +26,48 @@ var postController = function () {
         .catch(console.log);
   }
 
+//   function create(context) {
+//     templates.get('post-create')
+//       .then(function (template) {
+//         context.$element().html(template)
+
+//         $('#btn-create-post').on('click', function () {
+//           let postTitle = $('#post-title').val();
+//           let postDescription = $('#post-description').val();
+//           let author = localStorage.displayName;
+
+//           postCreate(postTitle, postDescription, author, localStorage.authKey)
+//             .then((data) => {
+//                 document.location = '#/posts';
+//             })
+//             .catch(console.log);
+//         });
+//       });
+//   }
   function create(context) {
-    templates.get('post-create')
-      .then(function (template) {
-        context.$element().html(template)
+    getCurrentUser()
+        .then((data) => {
+            console.log(data.result);
+            let currentUser = data.result;
+            if (currentUser !== null) {
+                templates.get('post-create')
+                .then(function (template) {
+                    context.$element().html(template)
 
-        $('#btn-create-post').on('click', function () {
-          let postTitle = $('#post-title').val();
-          let postDescription = $('#post-description').val();
-          let author = localStorage.displayName;
+                    $('#btn-create-post').on('click', function () {
+                    let postTitle = $('#post-title').val();
+                    let postDescription = $('#post-description').val();
+                    let author = localStorage.displayName;
 
-          postCreate(postTitle, postDescription, author, localStorage.authKey)
-            .then((data) => {
-                document.location = '#/posts';
-            })
-            .catch(console.log);
+                    postCreate(postTitle, postDescription, author, localStorage.authKey)
+                        .then((data) => {
+                            document.location = '#/posts';
+                        })
+                        .catch(console.log);
+                    });
+                });
+            }
         });
-      });
   }
   
   function remove(context) {
@@ -56,7 +81,8 @@ var postController = function () {
             .then((data) => {
                 console.log(data.result);
                 let currentUser = data.result;
-                if (!thisPost.AuthorId || (currentUser !==null && thisPost.AuthorId === currentUser.Id)) {
+                if (!thisPost.AuthorId || (currentUser !== null && thisPost.AuthorId === currentUser.Id) ||
+                            (currentUser !== null && currentUser.Role === Administrator_Role_Hash)) {
                     postDeleteById(id)
                         .then(() => {
                             popup('#infoBox', Successful_Deleted_Post);
@@ -87,7 +113,8 @@ var postController = function () {
             .then((data) => {
                 console.log(data.result);
                 let currentUser = data.result;
-                if (!thisPost.AuthorId || (currentUser !==null && thisPost.AuthorId === currentUser.Id)) {
+                if (!thisPost.AuthorId || (currentUser !==null && thisPost.AuthorId === currentUser.Id) || 
+                            (currentUser !== null && currentUser.Role === Administrator_Role_Hash)) {
                     
                     templates.get('post-edit')
                         .then(function (template) {
