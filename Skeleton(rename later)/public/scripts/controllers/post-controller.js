@@ -1,7 +1,7 @@
 import {templates} from './../template.js'
 import {popup} from './popup-controller.js'
-import { 
-    getCurrentUser, postsGetAll, postCreate, postGetById, 
+import {
+    getCurrentUser, postsGetAll, postCreate, postGetById,
     postDeleteById, postEditById, Administrator_Role_Hash
 } from '../data.js'
 
@@ -9,12 +9,16 @@ var postController = function () {
   const Successful_Deleted_Post = "You have deleted this post successfully";
   const Successful_Edited_Post = "You have edited this post successfully";
   const Not_Allowed_To_Delete_Or_Edit_Post = "You are not the author and cannot delete or edit this post";
-  
+
   function all(context) {
-    let allposts = {};
+    let allposts = [];
     postsGetAll()
         .then((data) => {
-            allposts = data;
+          for (let i = 0; i < data.length; i++) {
+            if (localStorage.authKey === data[i].AuthorId) {
+              allposts.push(data[i]);
+            }
+          }
             templates.get('posts')
                 .then(function (template) {
                     context.$element().html(template(allposts));
@@ -69,7 +73,7 @@ var postController = function () {
             }
         });
   }
-  
+
   function remove(context) {
     let id = context.path.substring(context.path.lastIndexOf('/') + 1);
 
@@ -101,7 +105,7 @@ var postController = function () {
       })
       .catch(console.log);
   }
-  
+
   function edit(context) {
     let id = context.path.substring(context.path.lastIndexOf('/') + 1);
 
@@ -113,16 +117,16 @@ var postController = function () {
             .then((data) => {
                 console.log(data.result);
                 let currentUser = data.result;
-                if (!thisPost.AuthorId || (currentUser !==null && thisPost.AuthorId === currentUser.Id) || 
+                if (!thisPost.AuthorId || (currentUser !==null && thisPost.AuthorId === currentUser.Id) ||
                             (currentUser !== null && currentUser.Role === Administrator_Role_Hash)) {
-                    
+
                     templates.get('post-edit')
                         .then(function (template) {
                             context.$element().html(template)
-                            
+
                             $('#post-title').val(thisPost.Title);
                             $('#post-description').val(thisPost.Description);
-                            
+
                             $('#btn-edit-post').on('click', function () {
                                 let postTitle = $('#post-title').val();
                                 let postDescription = $('#post-description').val();

@@ -146,7 +146,7 @@ function postsGetAll() {
             });
     });
 }
-  
+
 function postCreate(title, description, author, authKey) {
     let queryPosts = dataAccess.data('Post');
     return new Promise((resolve, reject) => {
@@ -180,7 +180,7 @@ function postGetById(id) {
         );
     });
 }
-  
+
 function postDeleteById(id) {
     return new Promise((resolve, reject) => {
         let queryPosts = dataAccess.data('Post');
@@ -208,8 +208,8 @@ function postEditById(id, postTitle, postDescription) {
             });
     });
 }
-  
-export { 
+
+export {
     registerUser,
     logUser,
     getCurrentUser,
