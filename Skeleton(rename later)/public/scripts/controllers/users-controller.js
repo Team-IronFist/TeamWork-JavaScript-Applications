@@ -104,6 +104,7 @@ var usersController = function () {
     $('#link-login').removeClass('hidden');
     $('#link-settings').addClass('hidden');
     $('#link-addcar').addClass('hidden');
+    document.location = '#/';
   }
 
   function facebookLogin(context) {
@@ -174,11 +175,15 @@ var usersController = function () {
   }
 
   function displayUser(context){
-    //TODO getCurrentUser;
-    templates.get('user-info')
-      .then(function (template) {
-        context.$element().html(template);
-    });
+    getCurrentUser()
+      .then((data) => {
+        templates.get('user-info')
+          .then(function (template) {
+            console.log(data.result);
+            context.$element().html(template(data.result));
+        });
+      })
+      .catch(console.log);
   }
 
   return {

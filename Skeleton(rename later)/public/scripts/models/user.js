@@ -16,36 +16,36 @@ function createUser(){
       return this._username;
     }
     set Username(value){
-      this._username = value;
+        this._username = value;
     }
 
     get DisplayName(){
       return this._displayName;
     }
     set DisplayName(value){
-      this._displayName = value;
+        this._displayName = value;
     }
 
     get Password(){
       return this._password;
     }
     set Password(value){
-      this._password = value;
+        this._password = value;
     }
 
     get EMail(){
       return this._email;
     }
     set EMail(value){
-      this._email = value;
+        this._email = value;
     }
 
   }
   return {
     getUser: function (id, username, displayName, password, email){
       return new User(id, username, displayName, password, email)
+      }
     }
-  }
 }
 
 export {createUser}

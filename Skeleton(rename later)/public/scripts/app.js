@@ -16,7 +16,8 @@ import {usersController} from './controllers/users-controller.js'
     this.get('#/cars/all', console.log('#/cars/all'));
     this.get('#/cars/add', console.log('#/cars/add'));
     this.get('#/user-info', usersController.displayUser);
-    this.get('#/posts', postController.all);
+    this.get('#/posts/all', postController.all);
+    this.get('#/posts/user', postController.allFromUser);
     this.get('#/posts/create', postController.create);
     this.get('#/posts/remove/:id', postController.remove);
     this.get('#/posts/edit/:id', postController.edit);

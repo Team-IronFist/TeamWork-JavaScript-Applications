@@ -53,7 +53,6 @@ tr, td, th{
     margin-top: 10px;
 }
 
-/* Login and logout form*/
 .formBox{
     width: 300px;
     margin-left: auto;
@@ -66,10 +65,6 @@ tr, td, th{
 
 #loginNav{
     float: right;
-}
-
-#noAccount{
-    margin-top: 10px;
 }
 
 
@@ -107,8 +102,4 @@ tr, td, th{
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-}
-
-.footer{
-
 }

@@ -195,10 +195,10 @@ function postDeleteById(id) {
     });
 }
 
-function postEditById(id, postTitle, postDescription) {
+function postEditById(id, postTitle, postDescription, author) {
     return new Promise((resolve, reject) => {
         let queryPosts = dataAccess.data('Post');
-        queryPosts.updateSingle({ Id: id, Title: postTitle, Description: postDescription },
+        queryPosts.updateSingle({ Id: id, Title: postTitle, Description: postDescription, Author: author },
             function(){
                 resolve();
             },
