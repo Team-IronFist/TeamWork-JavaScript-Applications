@@ -1,5 +1,5 @@
 function createCar(){
-  class User {
+  class Car {
     constructor(id, authorId, make, engine, year, horsePowers, extras) {
       this._comments = [];
 
