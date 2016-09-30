@@ -108,6 +108,8 @@ var postController = function () {
                         role: 'admin'
                     });
                 }
+            
+                resolve(false);
             })
             .catch(reject);
     });
