@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iron Fist Forum</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+</head>
+
+<body>
+    <header class="nav navbar">
+        <div class="container">
+            <h1 class="text-center">IRON FIST FORUM</h1>
+        </div>
+
+        <nav class="navbar navbar-default">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/cars/all">Cars for sale</a></li>
+                <li><a href="#/cars/add" id="link-addcar" class="hidden">Sell your car</a></li>
+                <li><a href="#/posts/create">Create post</a></li>
+                <li><a href="#/posts/all">All Posts</a></li>
+                <li><a href="#/posts/user">User Posts</a></li>
+                <li><a href="#/contact">Contact</a></li>
+                <li class="dropdown">
+                  <a href="#/settings" id="link-settings" class="hidden">Settings</a>
+                  <div class="dropdown-content">
+                    <a id="users" href="#/settings/all-users">View all users</a>
+                    <a href="#">View all cars</a>
+                    <a href="#">View all posts</a>
+                    <a href="#">View all comments</a>
+                  </div>
+                </li>
+            </ul>
+            <ul id="loginNav" class="nav navbar-nav">
+                <li><a href="#/login" id="link-login">Login</a></li>
+                <li><a href="#/register" id="link-register">Register</a></li>
+            </ul>
+            <div id="logout" class="form-group hidden">
+                Hello, <a href="#/user-info"><strong id="span-username"></strong></a>
+                <button id="btn-logout" type="submit" class="btn btn-default">Logout</button>
+            </div>
+        </nav>
+    </header>
+    <section id="loadingBox" class="navbar-default">Loading...</section>
+    <section id="infoBox" class="navbar-default" onclick="$(this).hide()">Info</section>
+    <section id="errorBox" class="navbar-default" onclick="$(this).hide()">Error</section>
+    <section id="content" class="container text-center">
+
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <ul class="list-unstyled">
+                <li>
+                    <a href="https://github.com/Team-IronFist/TeamWork-JavaScript-Applications">Github</a>
+                </li>
+                <li>
+                    <a href="#/contact">Team IronFist members</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="./../node_modules/systemjs/dist/system.js"></script>
+    <script src="./scripts/system-config.js"></script>
+    <script>
+        System.import('app');
+    </script>
+
+
+    <!-- TO DO IMPORT WITH SYSTEMJS-->
+    <!-- facebook authentication-->
+    <!--<script src="fb-authentication.js"></script>-->
+    <!-- Libraries -->
+    <script src="bower_components/everlive/min/everlive.all.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/sammy/lib/sammy.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+
+</body>
+
+</html>

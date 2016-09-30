@@ -1,0 +1,105 @@
+body{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,eeeeee+100;Grey+Flat */
+  background: #eeeeee; /* Old browsers */
+  background: -moz-linear-gradient(top,  #eeeeee 0%, #eeeeee 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #eeeeee 0%,#eeeeee 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #eeeeee 0%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+}
+#loadingBox {
+    background-color: blue;
+    border-radius: 5px 10px;
+    width: 500px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+#infoBox {
+    background-color: green;
+    border-radius: 5px 10px;
+    width: 300px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+#errorBox {
+    background-color: red;
+    border-radius: 5px 10px;
+    width: 80%;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+#errorBox, #infoBox, #loadingBox {
+    display: none;
+}
+#errorBox, #infoBox, #loadingBox :hover{
+  cursor: pointer;
+}
+tr, td, th{
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  margin:10px;
+}
+
+#content {
+    min-height: 350px;
+}
+
+#logout{
+    float: right;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.formBox{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group input{
+    text-align: center;
+}
+
+#loginNav{
+    float: right;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
