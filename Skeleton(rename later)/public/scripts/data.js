@@ -106,9 +106,9 @@ function userDelete(id) {
     });
 }
 
-function userEdit(id, displayName) {
+function userEdit(id, displayName, email) {
     return new Promise((resolve, reject) => {
-        dataAccess.Users.updateSingle({ 'Id': id, 'DisplayName': displayName },
+        dataAccess.Users.updateSingle({ 'Id': id, 'DisplayName': displayName, 'Email': email },
             function(){
                 resolve();
             },
@@ -134,7 +134,22 @@ function getAllUsers() {
                 reject(error);
             });
     });
-  }
+}
+
+function userGetById(id) {
+    return new Promise((resolve, reject) => {
+      dataAccess.Users.getById(id)
+        .then(function (data) {
+                console.log(data.result);
+                resolve(data.result);
+            },
+            function (error) {
+                console.log(error);
+                reject(error);
+            }
+        );
+    });
+}
 
 function postsGetAll() {
     let queryPosts = dataAccess.data('Post');
@@ -166,8 +181,8 @@ function postCreate(title, description, author, authKey) {
 }
 
 function postGetById(id) {
+    let queryPosts = dataAccess.data('Post');
     return new Promise((resolve, reject) => {
-      let queryPosts = dataAccess.data('Post');
       queryPosts.getById(id)
         .then(function (data) {
                 console.log(data.result);
@@ -182,8 +197,8 @@ function postGetById(id) {
 }
 
 function postDeleteById(id) {
+    let queryPosts = dataAccess.data('Post');
     return new Promise((resolve, reject) => {
-        let queryPosts = dataAccess.data('Post');
         queryPosts.destroySingle({ Id: id },
             function(){
                 resolve();
@@ -196,8 +211,8 @@ function postDeleteById(id) {
 }
 
 function postEditById(id, postTitle, postDescription, author) {
+    let queryPosts = dataAccess.data('Post');
     return new Promise((resolve, reject) => {
-        let queryPosts = dataAccess.data('Post');
         queryPosts.updateSingle({ Id: id, Title: postTitle, Description: postDescription, Author: author },
             function(){
                 resolve();
@@ -209,11 +224,35 @@ function postEditById(id, postTitle, postDescription, author) {
     });
 }
 
+function carsGetAll() {
+    // let queryCars = dataAccess.data('Cars');
+    // return new Promise((resolve, reject) => {
+    //     queryCars.get()
+    //         .then(function (data) {
+    //             console.log(data.result);
+    //             resolve(data.result);
+    //         });
+    // });
+
+    return new Promise((resolve, reject) => {
+        dataAccess.Cars.get()
+            .then(function (data) {
+                console.log(data.result);
+                resolve(data);
+            },
+            function (error) {
+                console.log(error);
+                reject(error);
+            });
+    });
+}
+
 export {
     registerUser,
     logUser,
     getCurrentUser,
     userChangePassword,
+    userGetById,
     userByUserName,
     userDelete,
     userEdit,
@@ -224,5 +263,6 @@ export {
     postGetById,
     postDeleteById,
     postEditById,
+    carsGetAll,
     Administrator_Role_Hash
 }

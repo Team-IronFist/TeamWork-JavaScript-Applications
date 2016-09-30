@@ -29,8 +29,8 @@ import {usersController} from './controllers/users-controller.js'
     //this.get('#/events', eventsController.all);
     this.get('#/contact', contactController.all);
     this.get('#/settings/all-users', settingsController.allUsers);
-    this.get('#/settings/delete-user', usersController.deleteUser);
-    this.get('#/settings/edit-user', usersController.editUser);
+    this.get('#/settings/delete-user/:id', usersController.deleteUser);
+    this.get('#/settings/edit-user/:id', usersController.editUser);
 
     this.get('#/user/:username', function () {
       let username = this.params['username'];
@@ -49,6 +49,7 @@ import {usersController} from './controllers/users-controller.js'
         if (user) {
           $('#span-username').text(user);
           $('#logout').removeClass('hidden');
+          $('#user-posts').removeClass('hidden');
         }
       });
   };
@@ -62,6 +63,7 @@ import {usersController} from './controllers/users-controller.js'
       $('#link-register').addClass('hidden');
       $('#link-login').addClass('hidden');
       $('#logout').removeClass('hidden');
+      $('#user-posts').removeClass('hidden');
       $('#span-username').text(autoDisplayName);
     }
   };

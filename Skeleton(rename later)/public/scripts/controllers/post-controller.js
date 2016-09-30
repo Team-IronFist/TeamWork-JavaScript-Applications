@@ -108,8 +108,8 @@ var postController = function () {
                         role: 'admin'
                     });
                 }
-            
-                resolve(false);
+
+                resolve({authorized: false});
             })
             .catch(reject);
     });
@@ -124,10 +124,10 @@ var postController = function () {
 
         isAuthorized(thisPost.AuthorId)
             .then((data) => {
-                console.log(data.result);
+                console.log(data);
                 if (!data.authorized) {
                     popup('#errorBox', Not_Allowed_To_Delete_Or_Edit_Post);
-                    document.location = '#/posts/user';
+                    document.location = '#/posts/all';
                 } else {
                     postDeleteById(id)
                         .then(() => {
@@ -136,7 +136,7 @@ var postController = function () {
                         })
                         .catch((error) => {
                             popup('#errorBox', error.message);
-                            document.location = '#/posts/user';
+                            document.location = '#/posts/all';
                         })
                 }
             })
@@ -156,7 +156,7 @@ function edit(context) {
                 console.log(data.result);
                 if (!data.authorized) {
                     popup('#errorBox', Not_Allowed_To_Delete_Or_Edit_Post);
-                    document.location = '#/posts/user';
+                    document.location = '#/posts/all';
                 } else {
                     templates.get('post-edit')
                         .then(function (template) {
@@ -185,7 +185,7 @@ function edit(context) {
                                 })
                                 .catch((error) => {
                                     popup('#errorBox', error.message);
-                                    document.location = '#/posts/user';
+                                    document.location = '#/posts/all';
                                 })
                             });
                         });
