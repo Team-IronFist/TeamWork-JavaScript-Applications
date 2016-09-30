@@ -1,4 +1,5 @@
 import {templates} from './../template.js'
+import {createCar} from './../models/car.js'
 import {popup} from './popup-controller.js'
 import { carsGetAll } from '../data.js'
 
