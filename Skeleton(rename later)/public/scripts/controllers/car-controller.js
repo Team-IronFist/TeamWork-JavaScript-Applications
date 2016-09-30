@@ -20,9 +20,9 @@ var carController = function () {
             });
     }
 
-    function add(context){
+    function add(context) {
         templates.get('add-car')
-            .then(function(template){
+            .then(function (template) {
                 context.$element().html(template)
                 console.log('Time to make it work dude!')
             })
@@ -44,7 +44,9 @@ var carController = function () {
     //         }
     // }
     return {
-        all,
-        add
+        all: all,
+        add: add
     }
 } ();
+
+export {carController}

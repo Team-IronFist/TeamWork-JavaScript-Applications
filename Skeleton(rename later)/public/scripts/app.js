@@ -3,6 +3,7 @@ import {contactController} from './controllers/contact-controller.js'
 import {postController} from './controllers/post-controller.js'
 import {settingsController} from './controllers/settings-controller.js'
 import {usersController} from './controllers/users-controller.js'
+import {carController} from './controllers/car-controller.js'
 
 (function () {
   var sammyApp = Sammy('#content', function () {
@@ -14,7 +15,7 @@ import {usersController} from './controllers/users-controller.js'
     this.get('#/login', usersController.login);
     this.get('#/change-password', usersController.changePassword);
     this.get('#/cars/all', console.log('#/cars/all'));
-    this.get('#/cars/add', console.log('#/cars/add'));
+    this.get('#/cars/add', carController.add);
     this.get('#/user-info', usersController.displayUser);
     this.get('#/posts/all', postController.all);
     this.get('#/posts/user', postController.allFromUser);
