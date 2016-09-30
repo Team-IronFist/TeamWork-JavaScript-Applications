@@ -53,6 +53,7 @@ tr, td, th{
     margin-top: 10px;
 }
 
+/* Login and logout form*/
 .formBox{
     width: 300px;
     margin-left: auto;
@@ -65,6 +66,10 @@ tr, td, th{
 
 #loginNav{
     float: right;
+}
+
+#noAccount{
+    margin-top: 10px;
 }
 
 
