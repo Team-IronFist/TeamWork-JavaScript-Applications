@@ -1,4 +1,5 @@
 import {createUser} from './models/user.js'
+import {createCar} from './models/car.js'
 
 const Authentication_Key = 'zhumgwq8m2cn6p2e';
 const Administrator_Role_Hash = '372d6b60-8102-11e6-9eb4-3157f6092d16';
@@ -180,6 +181,29 @@ function postCreate(title, description, author, authKey) {
     });
 }
 
+function carCreate(attributes) {
+    let queryPosts = dataAccess.data('Car');
+    var carModule = createCar();
+    let car = carModule.getCar(
+      attributes.Id,
+      attributes.AuthorId,
+      attributes.Make,
+      attributes.Engine,
+      attributes.Year,
+      attributes.HorsePowers,
+      attributes.Extras);
+    return new Promise((resolve, reject) => {
+        queryPosts.create(attributes,
+            function (data) {
+
+                resolve(data);
+            },
+            function (error) {
+                reject(error);
+            });
+    });
+}
+
 function postGetById(id) {
     let queryPosts = dataAccess.data('Post');
     return new Promise((resolve, reject) => {
@@ -264,5 +288,6 @@ export {
     postDeleteById,
     postEditById,
     carsGetAll,
+    carCreate,
     Administrator_Role_Hash
 }
