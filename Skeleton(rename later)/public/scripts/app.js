@@ -72,6 +72,7 @@ import {commentsController} from './controllers/comment-controller.js'
           $('#span-username').text(user);
           $('#logout').removeClass('hidden');
           $('#user-posts').removeClass('hidden');
+          //$('#link-addcar').removeClass('hidden');
         }
       });
   };
@@ -86,6 +87,7 @@ import {commentsController} from './controllers/comment-controller.js'
       $('#link-login').addClass('hidden');
       $('#logout').removeClass('hidden');
       $('#user-posts').removeClass('hidden');
+      $('#link-addcar').removeClass('hidden');
       $('#span-username').text(autoDisplayName);
     }
   };
