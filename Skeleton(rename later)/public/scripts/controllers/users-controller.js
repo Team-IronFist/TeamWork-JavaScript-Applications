@@ -2,8 +2,8 @@ import {templates} from './../template.js'
 import {createUser} from './../models/user.js'
 import {popup} from './popup-controller.js'
 import {
-    registerUser, logUser, userChangePassword, userLogOut, userGetById,
-    userByUserName, userDelete, userEdit, Administrator_Role_Hash, getCurrentUser
+  registerUser, logUser, userChangePassword, userLogOut, userGetById,
+  userByUserName, userDelete, userEdit, Administrator_Role_Hash, getCurrentUser
 } from '../data.js'
 
 var usersController = function () {
@@ -15,29 +15,29 @@ var usersController = function () {
   const Successful_Edit_User_Message = "You have edited this user successfully";
 
   let tryToLog = function (username, password) {
-      logUser(username, password)
-        .then((data) => {
-            popup('#infoBox', Successful_Login_Message);
-            document.location = '#/home'
+    logUser(username, password)
+      .then((data) => {
+        popup('#infoBox', Successful_Login_Message);
+        document.location = '#/home'
 
-            //Display currentUser
-            if (username) {
-              $('#span-username').text(data.result.DisplayName);
-              $('#link-register').addClass('hidden');
-              $('#link-login').addClass('hidden');
-              $('#logout').removeClass('hidden');
-              $('#user-posts').removeClass('hidden');
-              $('#link-addcar').removeClass('hidden');
-            }
-            if (data.result.Role === Administrator_Role_Hash) {
-              $('#link-settings').removeClass('hidden');
-            }
-          })
-        .catch((error) => {
-            popup('#errorBox', error.message);
-            console.log(error);
-        });
-      }
+        //Display currentUser
+        if (username) {
+          $('#span-username').text(data.result.DisplayName);
+          $('#link-register').addClass('hidden');
+          $('#link-login').addClass('hidden');
+          $('#logout').removeClass('hidden');
+          $('#user-posts').removeClass('hidden');
+          $('#link-addcar').removeClass('hidden');
+        }
+        if (data.result.Role === Administrator_Role_Hash) {
+          $('#link-settings').removeClass('hidden');
+        }
+      })
+      .catch((error) => {
+        popup('#errorBox', error.message);
+        console.log(error);
+      });
+  }
 
   function login(context) {
     templates.get('login')
@@ -78,12 +78,12 @@ var usersController = function () {
 
           registerUser(username, password, attributes)
             .then(() => {
-                popup('#infoBox', Successful_Registration_Message);
-                tryToLog(username, password);
+              popup('#infoBox', Successful_Registration_Message);
+              tryToLog(username, password);
             })
             .catch((err) => {
-                console.log(err);
-                popup('#errorBox', error.message);
+              console.log(err);
+              popup('#errorBox', error.message);
             });
         });
       });
@@ -126,81 +126,88 @@ var usersController = function () {
           newPassword = $('#tb-new-password').val();
           userChangePassword(username, password, newPassword)
             .then(() => {
-                popup('#infoBox', Successful_Change_Password_Message);
+              popup('#infoBox', Successful_Change_Password_Message);
             })
             .catch((error) => {
-                popup('#errorBox', error.message);
+              popup('#errorBox', error.message);
             });
         });
       });
   }
 
-  function getUserByUserName(username) {
-      userByUserName(username)
-        .then(/* TODO template for current user */)
-        .catch(console.log);
+  function getUserByUserName(context, username) {
+    let foundUser;
+    userByUserName(username)
+      .then((user) => {
+        foundUser = user;
+        return templates.get('user-info')
+      })
+      .then((template)=>{
+        context.$element().html(template(foundUser));
+      })
+      .catch((error) => console.log(error));
   }
 
   function idFromUrl(url) {
     return url.path.substring(url.path.lastIndexOf('/') + 1);
   }
 
-  function deleteUser(context){
+  function deleteUser(context) {
     let id = idFromUrl(context);
     userDelete(id)
-        .then(() => {
-            console.log('User successfully deleted.');
-            popup('#infoBox', Successful_Delete_User_Message);
-            document.location = '#/settings/all-users';
-        })
-        .catch((error) => {
-            popup('#errorBox', error.message);
-            document.location = '#/settings/all-users';
-        });
+      .then(() => {
+        console.log('User successfully deleted.');
+        popup('#infoBox', Successful_Delete_User_Message);
+        document.location = '#/settings/all-users';
+      })
+      .catch((error) => {
+        popup('#errorBox', error.message);
+        document.location = '#/settings/all-users';
+      });
   }
 
-  function editUser(context){
+  function editUser(context) {
     let id = idFromUrl(context);
 
     userGetById(id)
       .then((data) => {
-          templates.get('settings-edit-user')
-            .then(function (template) {
-                context.$element().html(template);
-                $('#tb-edit-email').val(data.Email);
-                $('#tb-edit-displayName').val(data.DisplayName);
-                $('#btn-edit').on('click', function () {
-                    let email = $('#tb-edit-email').val();
-                    let displayName = $('#tb-edit-displayName').val();
-                    if (email === data.Email && displayName === data.DisplayName) {
-                        document.location = '#/settings/all-users';
-                        return;
-                    }
+        templates.get('settings-edit-user')
+          .then(function (template) {
+            context.$element().html(template);
+            $('#tb-edit-email').val(data.Email);
+            $('#tb-edit-displayName').val(data.DisplayName);
+            $('#btn-edit').on('click', function () {
+              let email = $('#tb-edit-email').val();
+              let displayName = $('#tb-edit-displayName').val();
+              if (email === data.Email && displayName === data.DisplayName) {
+                document.location = '#/settings/all-users';
+                return;
+              }
 
-                userEdit(id, displayName, email)
-                  .then(() => {
-                      console.log('User successfully edited.');
-                      popup('#infoBox', Successful_Edit_User_Message);
-                      document.location = '#/settings/all-users';
-                  })
-                  .catch((error) => {
-                      popup('#errorBox', error.message);
-                      document.location = '#/settings/all-users';
-                  });
+              userEdit(id, displayName, email)
+                .then(() => {
+                  console.log('User successfully edited.');
+                  popup('#infoBox', Successful_Edit_User_Message);
+                  document.location = '#/settings/all-users';
+                })
+                .catch((error) => {
+                  popup('#errorBox', error.message);
+                  document.location = '#/settings/all-users';
                 });
             });
+          });
       })
       .catch(console.log);
   }
 
-  function displayUser(context){
+  function displayUser(context) {
     getCurrentUser()
       .then((data) => {
         templates.get('user-info')
           .then(function (template) {
             console.log(data.result);
             context.$element().html(template(data.result));
-        });
+          });
       })
       .catch(console.log);
   }

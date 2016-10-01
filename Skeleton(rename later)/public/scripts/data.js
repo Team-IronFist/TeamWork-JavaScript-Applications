@@ -86,7 +86,6 @@ function userByUserName(username) {
         dataAccess.Users.get(filter)
             .then((data) => {
                 let selectedUser = data.result[0];
-                console.log(selectedUser)
                 resolve(selectedUser);
             })
             .catch((error) => {

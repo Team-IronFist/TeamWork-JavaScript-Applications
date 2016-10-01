@@ -54,9 +54,9 @@ import {commentsController} from './controllers/comment-controller.js'
     this.get('#/settings/delete-user/:id', usersController.deleteUser);
     this.get('#/settings/edit-user/:id', usersController.editUser);
 
-    this.get('#/user/:username', function () {
+    this.get('#/user/:username', function (context) {
       let username = this.params['username'];
-      settingsController.getUserByUserName(username);
+      usersController.getUserByUserName(context, username);
     })
     //this.get('#/settings', settingsController.users);
   });
