@@ -1,4 +1,9 @@
 import {templates} from './../template.js'
+import {popup} from './popup-controller.js'
+import {
+    getCurrentUser, commentCreate
+} from '../data.js'
+import {usersController} from './users-controller.js'
 
 var commentsController = function () {
   function all(context) {
@@ -11,10 +16,23 @@ var commentsController = function () {
 
 
   function add(context) {
-    templates.get('comment-car')
-      .then(function (template) {
-        context.$element().html(template)
-      });
+    getCurrentUser()
+        .then((data) => {
+            templates.get('comment-car')
+                .then(function (template) {
+                    context.$element().html(template);
+
+                    $('#btn-comment-add').on('click', function () {
+                        let commentContent = $('#comment-content').val();
+
+                        commentCreate(commentContent, localStorage.authKey)
+                            .then((data) => {
+                                document.location = '#/cars/all';
+                            })
+                            .catch(console.log);
+                    });
+                });
+        });
   }
 
   return {
