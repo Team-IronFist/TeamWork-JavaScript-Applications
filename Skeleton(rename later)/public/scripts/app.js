@@ -6,7 +6,7 @@ import {usersController} from './controllers/users-controller.js'
 import {carController} from './controllers/car-controller.js'
 import {validator} from './validator.js'
 import {commentsController} from './controllers/comment-controller.js'
-
+import {Administrator_Role_Hash} from './data.js'
 
 (function () {
   var sammyApp = Sammy('#content', function () {
@@ -93,6 +93,9 @@ import {commentsController} from './controllers/comment-controller.js'
       $('#user-posts').removeClass('hidden');
       $('#link-addcar').removeClass('hidden');
       $('#span-username').text(autoDisplayName);
+    }
+    if (autoDisplayName === 'Admin') {
+      $('#link-settings').removeClass('hidden');
     }
   };
   // event for logout
