@@ -270,6 +270,21 @@ function carsGetAll() {
     // });
 }
 
+function commentCreate(content, authKey) {
+  let queryComments = dataAccess.data('Comment');
+  return new Promise((resolve, reject) => {
+      queryComments.create({
+          'Content': content,
+          'Owner': localStorage.authKey
+          },
+          function (data) {
+              resolve(data);
+          },
+          function (error) {
+              reject(error);
+          });
+  });
+}
 export {
     registerUser,
     logUser,
@@ -288,5 +303,6 @@ export {
     postEditById,
     carsGetAll,
     carCreate,
+    commentCreate,
     Administrator_Role_Hash
 }
