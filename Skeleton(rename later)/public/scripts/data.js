@@ -271,6 +271,7 @@ function carsGetAll() {
     // });
 }
 
+<<<<<<< HEAD
 function commentsGetAll() {
     let queryComments = dataAccess.data('Comment');
     return new Promise((resolve, reject) => {
@@ -283,6 +284,24 @@ function commentsGetAll() {
 }
 
 function commentCreate(content, author, authKey) {
+=======
+function getCarById(id){
+    let queryCars = dataAccess.data('Car');
+    return new Promise((resolve, reject) => {
+      queryCars.getById(id)
+        .then(function (data) {
+                resolve(data.result);
+            },
+            function (error) {
+                console.log(error);
+                reject(error);
+            }
+        );
+    });
+}
+
+function commentCreate(content, authKey) {
+>>>>>>> origin/master
   let queryComments = dataAccess.data('Comment');
   return new Promise((resolve, reject) => {
       queryComments.create({
@@ -316,6 +335,7 @@ export {
     postEditById,
     carsGetAll,
     carCreate,
+    getCarById,
     commentCreate,
     commentsGetAll,
     Administrator_Role_Hash

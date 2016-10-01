@@ -156,3 +156,18 @@ tr, td, th {
         .small-car-container .small-car-info span {
             display: block;
         }
+
+.large-car-container {
+    padding: 15px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: white;
+}
+    .large-car-container .large-car-picture {
+        height: 300px;
+        width: auto;
+        border-radius: 10px;
+    }
+    .large-car-container span {
+        display: block;
+    }
