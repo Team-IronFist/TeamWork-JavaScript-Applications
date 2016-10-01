@@ -17,24 +17,31 @@ import {commentsController} from './controllers/comment-controller.js'
     this.get('#/register', usersController.register);
     this.get('#/login', usersController.login);
     this.get('#/change-password', usersController.changePassword);
+
     this.get('#/cars/all', carController.all);
     this.get('#/cars/add', carController.add);
+    this.get('#/cars/:id', function (context) {
+      let id = this.params['id'];
+      carController.showSingle(context, id);
+    });
+
     this.get('#/user-info', usersController.displayUser);
     this.get('#/posts/all', postController.all);
     this.get('#/posts/user', postController.allFromUser);
     this.get('#/posts/create', function (context) {
       validator.isUserLogged()
-          .then(
-              function (loggedIn) {
-                if(loggedIn){
-                  postController.create(context);
-                }
-                else{
-                  document.location = '#/login';
-                }
-              }
-          );
-    });    this.get('#/posts/remove/:id', postController.remove);
+        .then(
+        function (loggedIn) {
+          if (loggedIn) {
+            postController.create(context);
+          }
+          else {
+            document.location = '#/login';
+          }
+        }
+        );
+    });
+    this.get('#/posts/remove/:id', postController.remove);
     this.get('#/posts/edit/:id', postController.edit);
 
     //this.get('#/comment', commentsController.all);
@@ -72,7 +79,7 @@ import {commentsController} from './controllers/comment-controller.js'
   // event when refreshing page
   sessionStorage.setItem("is_reloaded", true);
 
-  if (sessionStorage.getItem("is_reloaded")){
+  if (sessionStorage.getItem("is_reloaded")) {
     let autoDisplayName = localStorage.displayName;
     if (autoDisplayName) {
       $('#link-register').addClass('hidden');
@@ -85,7 +92,7 @@ import {commentsController} from './controllers/comment-controller.js'
   // event for logout
   $('#btn-logout').on('click', usersController.logout);
 
-//   window.onbeforeunload = function() {
-//       usersController.logout();
-//   }
+  //   window.onbeforeunload = function() {
+  //       usersController.logout();
+  //   }
 } ());

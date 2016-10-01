@@ -1,7 +1,7 @@
 import {templates} from './../template.js'
 import {createCar} from './../models/car.js'
 import {popup} from './popup-controller.js'
-import { carsGetAll, carCreate } from '../data.js'
+import { carsGetAll, carCreate, getCarById, userGetById } from '../data.js'
 
 var carController = function () {
 
@@ -57,6 +57,30 @@ var carController = function () {
             })
     }
 
+    function showSingle(context, id) {
+        console.log(context);
+        console.log(id);
+
+        let car;
+        let owner;
+
+        getCarById(id)
+            .then((data) => {
+                car = data;
+                return userGetById(car.Owner)
+            })
+            .then((data) => {
+                owner = data;
+                car.username = owner.Username;
+                return templates.get('single-car')
+            })
+            .then((template) => {
+                console.log(car.username)
+                context.$element().html(template(car))
+            })
+
+    }
+
     // function all(context) {
     //     let allCars = [];
 
@@ -74,7 +98,8 @@ var carController = function () {
     // }
     return {
         all: all,
-        add: add
+        add: add,
+        showSingle: showSingle
     }
 } ();
 

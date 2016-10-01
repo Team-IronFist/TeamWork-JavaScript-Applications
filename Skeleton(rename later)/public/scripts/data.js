@@ -270,6 +270,21 @@ function carsGetAll() {
     // });
 }
 
+function getCarById(id){
+    let queryCars = dataAccess.data('Car');
+    return new Promise((resolve, reject) => {
+      queryCars.getById(id)
+        .then(function (data) {
+                resolve(data.result);
+            },
+            function (error) {
+                console.log(error);
+                reject(error);
+            }
+        );
+    });
+}
+
 export {
     registerUser,
     logUser,
@@ -288,5 +303,6 @@ export {
     postEditById,
     carsGetAll,
     carCreate,
+    getCarById,
     Administrator_Role_Hash
 }
