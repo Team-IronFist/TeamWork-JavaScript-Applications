@@ -1,0 +1,25 @@
+<table class="table-striped">
+  <tr class="container">
+    <th>Model</th>
+    <th>Make</th>
+    <th>Extras</th>
+    <th>Engine</th>
+    <th>Horse powers</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  {{#each this}}
+  <tr class="container">
+    <td>{{this.Brand}}</td>
+    <td>{{this.Model}}</td>
+    <td>{{this.Extras}}</td>
+    <td>{{this.Engine}}</td>
+    <td>{{this.HorsePowers}}</td>
+    <td>{{this.Price}}</td>
+    <td>
+      <a id="edit" href="#/settings/{{this.Id}}">Edit</a>
+      <a id="delete" href="#/settings/{{this.Id}}">Delete</a>
+    </td>
+  </div>
+  {{/each}}
+</table>

@@ -251,6 +251,7 @@ function postEditById(id, postTitle, postDescription, author) {
 
 function carsGetAll() {
     let queryCars = dataAccess.data('Car');
+    console.log(queryCars);
     return new Promise((resolve, reject) => {
         queryCars.get()
             .then(function (data) {

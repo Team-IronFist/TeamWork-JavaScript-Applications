@@ -1,5 +1,5 @@
 import {templates} from './../template.js'
-import { getAllUsers } from '../data.js'
+import { getAllUsers, carsGetAll, postsGetAll } from '../data.js'
 
 var settingsController = function () {
 
@@ -18,8 +18,41 @@ var settingsController = function () {
         });
   }
 
+  function allCars(context) {
+    let allCars = {};
+    carsGetAll()
+        .then((data) => {
+            allCars = data;
+            templates.get('settings-all-cars')
+                .then(function (template) {
+                        context.$element().html(template(allCars));
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+        })
+        .catch(console.log);
+  }
+
+  function allPosts(context) {
+    let allPosts = {};
+    postsGetAll()
+        .then((data) => {
+            allPosts = data;
+            templates.get('settings-all-posts')
+                .then(function (template) {
+                        context.$element().html(template(allPosts));
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+        })
+        .catch(console.log);
+  }
   return {
-    allUsers: allUsers
+    allUsers: allUsers,
+    allCars: allCars,
+    allPosts: allPosts
   };
 } ();
 
