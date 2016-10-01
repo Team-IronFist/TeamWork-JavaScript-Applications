@@ -5,6 +5,7 @@ import {settingsController} from './controllers/settings-controller.js'
 import {usersController} from './controllers/users-controller.js'
 import {carController} from './controllers/car-controller.js'
 import {validator} from './validator.js'
+import {commentsController} from './controllers/comment-controller.js'
 
 
 (function () {
@@ -37,7 +38,7 @@ import {validator} from './validator.js'
     this.get('#/posts/edit/:id', postController.edit);
 
     //this.get('#/comment', commentsController.all);
-    //this.get('#/comment/add', commentsController.add);
+    this.get('#/comment/add', commentsController.add);
     //this.get('#/comment/delete', commentsController.delete);
 
     //this.get('#/events', eventsController.all);
