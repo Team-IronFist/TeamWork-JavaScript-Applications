@@ -271,7 +271,6 @@ function carsGetAll() {
     // });
 }
 
-<<<<<<< HEAD
 function commentsGetAll() {
     let queryComments = dataAccess.data('Comment');
     return new Promise((resolve, reject) => {
@@ -283,8 +282,6 @@ function commentsGetAll() {
     });
 }
 
-function commentCreate(content, author, authKey) {
-=======
 function getCarById(id){
     let queryCars = dataAccess.data('Car');
     return new Promise((resolve, reject) => {
@@ -301,7 +298,6 @@ function getCarById(id){
 }
 
 function commentCreate(content, authKey) {
->>>>>>> origin/master
   let queryComments = dataAccess.data('Comment');
   return new Promise((resolve, reject) => {
       queryComments.create({
