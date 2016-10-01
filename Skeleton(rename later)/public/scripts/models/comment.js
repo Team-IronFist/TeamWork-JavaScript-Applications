@@ -24,8 +24,8 @@ function createComment()){
 
   }
   return {
-    getComment: function (id, authorId, content){
-      return new User(id, authorId, content)
+    getComment: function (id, authorId, postId, content){
+      return new Comment(id, authorId, postId, content);
       }
     }
 }

@@ -1,0 +1,12 @@
+{{#each this}}
+    <div class="small-car-container">
+        <img class="small-car-picture" src={{#if Picture}}"{{picture}}"{{else}}"./images/car.jpg"{{/if}}/>
+        <p>
+          {{Content}}
+        </p>
+        <p>
+          <em>Created by:</em><strong>{{Author}}</strong>
+          on: {{CreatedAt}}
+        </p>
+    </div>
+{{/each}}
