@@ -1,5 +1,6 @@
 import {templates} from './../template.js'
-import { getAllUsers, carsGetAll, postsGetAll } from '../data.js'
+import { getAllUsers, carsGetAll, postsGetAll,
+commentsGetAll } from '../data.js'
 
 var settingsController = function () {
 
@@ -49,10 +50,27 @@ var settingsController = function () {
         })
         .catch(console.log);
   }
+
+  function allComments(context) {
+    let allComments = {};
+    commentsGetAll()
+        .then((data) => {
+            allComments = data;
+            templates.get('settings-all-comments')
+                .then(function (template) {
+                        context.$element().html(template(allComments));
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+        })
+        .catch(console.log);
+  }
   return {
     allUsers: allUsers,
     allCars: allCars,
-    allPosts: allPosts
+    allPosts: allPosts,
+    allComments: allComments
   };
 } ();
 

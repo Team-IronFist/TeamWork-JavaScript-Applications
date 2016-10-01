@@ -56,6 +56,7 @@ import {commentsController} from './controllers/comment-controller.js'
 
     this.get('#/settings/all-cars', settingsController.allCars);
     this.get('#/settings/all-posts', settingsController.allPosts);
+    this.get('#/settings/all-comments', settingsController.allComments);
 
     this.get('#/user/:username', function (context) {
       let username = this.params['username'];
