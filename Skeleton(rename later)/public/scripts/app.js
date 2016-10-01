@@ -12,7 +12,7 @@ import {Administrator_Role_Hash} from './data.js'
   var sammyApp = Sammy('#content', function () {
 
     this.get('#/', homeController.all);
-    this.get('#/home', homeController.all);
+    this.get('#/home', homeController.viewLastCars);
 
     this.get('#/register', usersController.register);
     this.get('#/login', usersController.login);

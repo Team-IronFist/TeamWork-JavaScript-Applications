@@ -314,6 +314,23 @@ function commentCreate(content, authKey) {
           });
   });
 }
+
+function pagingItems(dataType, count){
+  let filter = dataAccess.data(dataType);
+  let query = new Everlive.Query();
+  query.take(count);
+return new Promise((resolve, reject) => {
+  filter.get(query) // filter
+      .then(function(data){
+          console.log(JSON.stringify(data));
+          resolve(data.result);
+        },
+        function(error){
+          console.log(JSON.stringify(error));
+          reject(error);
+        });
+    });
+}
 export {
     registerUser,
     logUser,
@@ -335,5 +352,6 @@ export {
     getCarById,
     commentCreate,
     commentsGetAll,
+    pagingItems,
     Administrator_Role_Hash
 }
