@@ -53,7 +53,6 @@ var carController = function () {
                   })
                   .catch(console.log);
                 });
-                console.log('Time to make it work dude!')
             })
     }
 

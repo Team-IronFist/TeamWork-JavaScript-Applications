@@ -249,26 +249,26 @@ function postEditById(id, postTitle, postDescription, author) {
 }
 
 function carsGetAll() {
-    // let queryCars = dataAccess.data('Cars');
-    // return new Promise((resolve, reject) => {
-    //     queryCars.get()
-    //         .then(function (data) {
-    //             console.log(data.result);
-    //             resolve(data.result);
-    //         });
-    // });
-
+    let queryCars = dataAccess.data('Car');
     return new Promise((resolve, reject) => {
-        dataAccess.Cars.get()
+        queryCars.get()
             .then(function (data) {
                 console.log(data.result);
-                resolve(data);
-            },
-            function (error) {
-                console.log(error);
-                reject(error);
+                resolve(data.result);
             });
     });
+
+    // return new Promise((resolve, reject) => {
+    //     dataAccess.Car.get()
+    //         .then(function (data) {
+    //             console.log(data.result);
+    //             resolve(data);
+    //         },
+    //         function (error) {
+    //             console.log(error);
+    //             reject(error);
+    //         });
+    // });
 }
 
 export {

@@ -14,7 +14,7 @@ import {carController} from './controllers/car-controller.js'
     this.get('#/register', usersController.register);
     this.get('#/login', usersController.login);
     this.get('#/change-password', usersController.changePassword);
-    this.get('#/cars/all', console.log('#/cars/all'));
+    this.get('#/cars/all', carController.all);
     this.get('#/cars/add', carController.add);
     this.get('#/user-info', usersController.displayUser);
     this.get('#/posts/all', postController.all);
