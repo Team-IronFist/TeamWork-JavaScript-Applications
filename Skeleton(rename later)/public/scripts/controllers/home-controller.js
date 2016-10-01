@@ -6,19 +6,31 @@ var homeController = function () {
   function all(context) {
     templates.get('home')
       .then(function (template) {
-        context.$element().html(template)
-      });
+        return context.$element().html(template)
+      })
+      .then(()=>{
+         return viewLastCars()
+      })
+      .then(()=>{
+          return viewLastPosts()
+      })
+      .then(()=>{
+          console.log('done')
+      })
+      .catch((error)=>{
+          console.log(error)
+      })
   }
 
-function viewLastCars(context){
+function viewLastCars(){
   let filterCars = {};
   pagingItems('Car', 1)
       .then((data) => {
           filterCars = data;
-          templates.get('home')
+          templates.get('all-cars')
               .then(function (template) {
                   console.log(JSON.stringify(filterCars));
-                  context.$element().html(template(filterCars));
+                  $('#last-cars').html(template(filterCars));
               });
       })
       .catch((error) => {
@@ -27,15 +39,15 @@ function viewLastCars(context){
 
 }
 
-function viewLastPosts(context){
+function viewLastPosts(){
   let filterPosts = {};
   pagingItems('Post', 3)
       .then((data) => {
           filterPosts = data;
-          templates.get('home')
+          templates.get('settings-all-posts')
               .then(function (template) {
                   console.log(JSON.stringify(filterPosts));
-                  context.$element().html(template(filterPosts));
+                  $('#last-posts').html(template(filterPosts));
               });
       })
       .catch((error) => {

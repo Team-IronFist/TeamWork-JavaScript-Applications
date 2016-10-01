@@ -55,6 +55,8 @@ var carController = function () {
 
                     let allCars;
 
+                    // TODO Fix this if anyone find out how!
+
                     carCreate(attributes)
                         .then(()=>{
                             popup('#infoBox', Car_Added_Message)
