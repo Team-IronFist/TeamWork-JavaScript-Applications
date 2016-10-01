@@ -11,6 +11,7 @@ function createCar() {
       this._horsePowers = horsePowers;
       this._extras = extras;
       this._price = price;
+      this._imagePath = './images/'
     }
 
     get Id() {
@@ -57,6 +58,13 @@ function createCar() {
     }
     set Price(value) {
       this._price = value;
+    }
+
+    get ImagePath() {
+      return this._imagePath;
+    }
+    set ImagePath(value) {
+      this._imagePath = value;
     }
   }
   return {

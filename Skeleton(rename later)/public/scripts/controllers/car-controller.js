@@ -38,6 +38,7 @@ var carController = function () {
                     let extras = $('#tb-extras').val();
                     let price = $('#tb-price').val();
                     let authorId = localStorage.authKey;
+                    let image = $('#tb-select-cars').val();
 
 
                     console.log(authorId);
@@ -50,7 +51,8 @@ var carController = function () {
                         Engine: engine,
                         Extras: extras,
                         Price: price,
-                        Owner: authorId
+                        Owner: authorId,
+                        Image: './images/' + image + '.png'
                     };
 
                     let allCars;
