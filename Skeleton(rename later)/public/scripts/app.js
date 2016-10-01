@@ -44,7 +44,7 @@ import {commentsController} from './controllers/comment-controller.js'
     this.get('#/posts/remove/:id', postController.remove);
     this.get('#/posts/edit/:id', postController.edit);
 
-    //this.get('#/comment', commentsController.all);
+    this.get('#/comment/all', commentsController.all);
     this.get('#/comment/add', commentsController.add);
     //this.get('#/comment/delete', commentsController.delete);
 

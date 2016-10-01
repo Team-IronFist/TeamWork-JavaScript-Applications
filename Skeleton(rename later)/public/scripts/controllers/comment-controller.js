@@ -1,17 +1,25 @@
 import {templates} from './../template.js'
 import {popup} from './popup-controller.js'
 import {
-    getCurrentUser, commentCreate
+    getCurrentUser, commentCreate, commentsGetAll
 } from '../data.js'
 import {usersController} from './users-controller.js'
 
 var commentsController = function () {
   function all(context) {
-    templates.get('all-comments')
-      .then(function (template) {
-        context.$element().html(template)
-        console.log('TODO');
-      });
+    let allComments = {};
+    commentsGetAll()
+        .then((data) => {
+            allComments = data;
+            templates.get('all-comments')
+                .then(function (template) {
+                        context.$element().html(template(allComments));
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+        })
+        .catch(console.log);
   }
 
 

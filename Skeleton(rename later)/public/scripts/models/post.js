@@ -27,7 +27,7 @@ function createPost()){
 
   }
   return {
-    getComment: function (id, authorId, author, title, description){
+    getPost: function (id, authorId, author, title, description){
       return new Post(id, authorId, author, title, description)
       }
     }

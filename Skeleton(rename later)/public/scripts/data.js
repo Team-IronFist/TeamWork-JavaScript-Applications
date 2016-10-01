@@ -1,5 +1,6 @@
 import {createUser} from './models/user.js'
 import {createCar} from './models/car.js'
+//import {createComment} from './models/comment.js'
 
 const Authentication_Key = 'zhumgwq8m2cn6p2e';
 const Administrator_Role_Hash = '372d6b60-8102-11e6-9eb4-3157f6092d16';
@@ -269,6 +270,17 @@ function carsGetAll() {
     // });
 }
 
+function commentsGetAll() {
+    let queryComments = dataAccess.data('Comment');
+    return new Promise((resolve, reject) => {
+        queryComments.get()
+            .then(function (data) {
+                console.log(data.result);
+                resolve(data.result);
+            });
+    });
+}
+
 function getCarById(id){
     let queryCars = dataAccess.data('Car');
     return new Promise((resolve, reject) => {
@@ -289,6 +301,7 @@ function commentCreate(content, authKey) {
   return new Promise((resolve, reject) => {
       queryComments.create({
           'Content': content,
+          'Author': localStorage.username,
           'Owner': localStorage.authKey
           },
           function (data) {
@@ -319,5 +332,6 @@ export {
     carCreate,
     getCarById,
     commentCreate,
+    commentsGetAll,
     Administrator_Role_Hash
 }
