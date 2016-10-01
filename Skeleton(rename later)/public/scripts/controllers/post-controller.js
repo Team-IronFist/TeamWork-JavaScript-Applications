@@ -15,25 +15,24 @@ var postController = function () {
     const No_Posts_From_This_User = `There are no posts published by this user`;
 
     function allFromUser(context) {
-        let allposts = [];
+        let allUserPosts = [];
         postsGetAll()
             .then((data) => {
                 for (let i = 0; i < data.length; i++) {
                     if (localStorage.authKey === data[i].AuthorId) {
-                        allposts.push(data[i]);
+                        allUserPosts.push(data[i]);
                     }
                 }
-                console.log(allposts);
-                if (allposts.length === 0) {
+                if (allUserPosts.length === 0) {
                     popup('#errorBox', No_Posts_From_This_User);
-                    document.location = "#/posts/all";
+                    document.location = "#/posts/user";
                     return;
                 }
                 ;
 
                 templates.get('posts')
                     .then(function (template) {
-                            context.$element().html(template(allposts));
+                            context.$element().html(template(allUserPosts));
                         },
                         function (error) {
                             console.log(error);
