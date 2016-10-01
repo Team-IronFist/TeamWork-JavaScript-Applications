@@ -59,32 +59,25 @@ var postController = function () {
     }
 
     function create(context) {
+        console.log('poop');
         getCurrentUser()
             .then((data) => {
-                //Redirect to login
-                if (!data.result) {
-                    usersController.login(context);
-                    //TODO Redirect back to create topic
-                }
-                else {
+                templates.get('post-create')
+                    .then(function (template) {
+                        context.$element().html(template);
 
-                    templates.get('post-create')
-                        .then(function (template) {
-                            context.$element().html(template)
+                        $('#btn-create-post').on('click', function () {
+                            let postTitle = $('#post-title').val();
+                            let postDescription = $('#post-description').val();
+                            let author = localStorage.displayName;
 
-                            $('#btn-create-post').on('click', function () {
-                                let postTitle = $('#post-title').val();
-                                let postDescription = $('#post-description').val();
-                                let author = localStorage.displayName;
-
-                                postCreate(postTitle, postDescription, author, localStorage.authKey)
-                                    .then((data) => {
-                                        document.location = '#/posts/user';
-                                    })
-                                    .catch(console.log);
-                            });
+                            postCreate(postTitle, postDescription, author, localStorage.authKey)
+                                .then((data) => {
+                                    document.location = '#/posts/user';
+                                })
+                                .catch(console.log);
                         });
-                }
+                    });
             });
     }
 

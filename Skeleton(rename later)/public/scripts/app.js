@@ -4,6 +4,8 @@ import {postController} from './controllers/post-controller.js'
 import {settingsController} from './controllers/settings-controller.js'
 import {usersController} from './controllers/users-controller.js'
 import {carController} from './controllers/car-controller.js'
+import {validator} from './validator.js'
+
 
 (function () {
   var sammyApp = Sammy('#content', function () {
@@ -19,8 +21,19 @@ import {carController} from './controllers/car-controller.js'
     this.get('#/user-info', usersController.displayUser);
     this.get('#/posts/all', postController.all);
     this.get('#/posts/user', postController.allFromUser);
-    this.get('#/posts/create', postController.create);
-    this.get('#/posts/remove/:id', postController.remove);
+    this.get('#/posts/create', function (context) {
+      validator.isUserLogged()
+          .then(
+              function (loggedIn) {
+                if(loggedIn){
+                  postController.create(context);
+                }
+                else{
+                  document.location = '#/login';
+                }
+              }
+          );
+    });    this.get('#/posts/remove/:id', postController.remove);
     this.get('#/posts/edit/:id', postController.edit);
 
     //this.get('#/comment', commentsController.all);
