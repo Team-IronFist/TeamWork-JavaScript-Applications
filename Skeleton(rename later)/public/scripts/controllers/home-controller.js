@@ -29,7 +29,6 @@ function viewLastCars(){
           filterCars = data;
           templates.get('all-cars')
               .then(function (template) {
-                  console.log(JSON.stringify(filterCars));
                   $('#last-cars').html(template(filterCars));
               });
       })
@@ -46,7 +45,6 @@ function viewLastPosts(){
           filterPosts = data;
           templates.get('settings-all-posts')
               .then(function (template) {
-                  console.log(JSON.stringify(filterPosts));
                   $('#last-posts').html(template(filterPosts));
               });
       })
