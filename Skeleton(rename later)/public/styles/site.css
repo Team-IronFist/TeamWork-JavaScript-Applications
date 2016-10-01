@@ -115,3 +115,30 @@ tr, td, th {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+.small-car-container {
+    height: 200px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+}
+    .small-car-container .small-car-picture {
+        float: left;
+        margin: auto;
+        height: 180px;
+        width: auto;
+        border-radius: 5px;
+    }
+    .small-car-container h3 {
+        margin: 10px;
+    }
+    .small-car-container .small-car-info{
+        float:left;
+        padding: 0px 10px;
+        text-align: left;
+    }
+        .small-car-container .small-car-info span {
+            display: block;
+        }

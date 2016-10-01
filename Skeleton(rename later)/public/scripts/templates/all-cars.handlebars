@@ -1,0 +1,12 @@
+{{#each this}}
+    <div class="small-car-container">
+        <img class="small-car-picture" src={{#if Picture}}"{{picture}}"{{else}}"./images/car.jpg"{{/if}}>
+        <h3><a href="#">{{Make}} {{Model}}</a></h3>
+        <div class=small-car-info>
+            <span><strong>Year:</strong> {{Year}}<span>
+            <span><strong>Engine:</strong> {{Engine}}<span>
+            <span><strong>Extras:</strong> {{Extras}}<span>
+            <span><strong>Comments:</strong> {{Comments}}<span>
+        </div>
+    </div>
+{{/each}}

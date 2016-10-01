@@ -253,7 +253,6 @@ function carsGetAll() {
     return new Promise((resolve, reject) => {
         queryCars.get()
             .then(function (data) {
-                console.log(data.result);
                 resolve(data.result);
             });
     });
