@@ -1,6 +1,6 @@
-function createCar(){
+function createCar() {
   class Car {
-    constructor(id, authorId, make, engine, year, horsePowers, extras) {
+    constructor(id, authorId, make, engine, year, horsePowers, extras, price) {
       this._comments = [];
 
       this._id = id;
@@ -10,53 +10,60 @@ function createCar(){
       this._year = year;
       this._horsePowers = horsePowers;
       this._extras = extras;
+      this._price = price;
     }
 
-    get Id(){
+    get Id() {
       return this._id;
     }
 
-    get Make(){
+    get Make() {
       return this._make;
     }
-    set Make(value){
-        this._make = value;
+    set Make(value) {
+      this._make = value;
     }
 
-    get Engine(){
+    get Engine() {
       return this._engine;
     }
-    set Engine(value){
-        this._engine = value;
+    set Engine(value) {
+      this._engine = value;
     }
 
-    get Year(){
+    get Year() {
       return this._year;
     }
-    set Year(value){
-        this._year = value;
+    set Year(value) {
+      this._year = value;
     }
 
-    get HorsePowers(){
+    get HorsePowers() {
       return this._horsePowers;
     }
-    set HorsePowers(value){
-        this._horsePowers = value;
+    set HorsePowers(value) {
+      this._horsePowers = value;
     }
 
-    get Extras(){
+    get Extras() {
       return this._extras;
     }
-    set Extras(value){
+    set Extras(value) {
       this._extras = value;
     }
 
+    get Price() {
+      return this._price;
+    }
+    set Price(value) {
+      this._price = value;
+    }
   }
   return {
-    getCar: function (id, authorId, make, engine, year, horsePowers, extras){
-      return new User(id, authorId, make, engine, year, horsePowers, extras)
-      }
+    getCar: function (id, authorId, make, engine, year, horsePowers, extras, price) {
+      return new Car(id, authorId, make, engine, year, horsePowers, extras, price)
     }
+  }
 }
 
 export {createCar}

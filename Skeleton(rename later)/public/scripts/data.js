@@ -182,7 +182,7 @@ function postCreate(title, description, author, authKey) {
 }
 
 function carCreate(attributes) {
-    let queryPosts = dataAccess.data('Car');
+    let queryCar = dataAccess.data('Car');
     var carModule = createCar();
     let car = carModule.getCar(
       attributes.Id,
@@ -190,10 +190,11 @@ function carCreate(attributes) {
       attributes.Make,
       attributes.Engine,
       attributes.Year,
+      attributes.Price,
       attributes.HorsePowers,
       attributes.Extras);
     return new Promise((resolve, reject) => {
-        queryPosts.create(attributes,
+        queryCar.create(attributes,
             function (data) {
 
                 resolve(data);

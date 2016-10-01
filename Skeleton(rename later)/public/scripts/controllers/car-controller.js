@@ -5,6 +5,8 @@ import { carsGetAll, carCreate, getCarById, userGetById } from '../data.js'
 
 var carController = function () {
 
+    const Car_Added_Message = 'Car successfully added!';
+
     function all(context) {
         let allCars = [];
 
@@ -34,6 +36,7 @@ var carController = function () {
                     let horsePowers = $('#tb-horsePowers').val();
                     let engine = $('#tb-engine').val();
                     let extras = $('#tb-extras').val();
+                    let price = $('#tb-price').val();
                     let authorId = localStorage.authKey;
 
 
@@ -46,13 +49,31 @@ var carController = function () {
                         HorsePowers: horsePowers,
                         Engine: engine,
                         Extras: extras,
+                        Price: price,
                         Owner: authorId
                     };
+
+                    let allCars;
+
                     carCreate(attributes)
-                        .then((data) => {
-                            document.location = 'all-cars';
+                        .then(()=>{
+                            popup('#infoBox', Car_Added_Message)
+                            console.log(context)
                         })
-                        .catch(console.log);
+                        // .then(() => {
+                        //     return carsGetAll();
+                        // })
+                        // .then((data) => {
+                        //     allCars = data;
+                        //     return templates.get('all-cars')
+                        // })
+                        // .then((template) => {
+                        //     $('#content').html(template(allCars));
+                        // })
+                        .catch((error)=>{
+                            popup('#infoBox', error);
+                            console.log(error);
+                        });
                 });
             })
     }
