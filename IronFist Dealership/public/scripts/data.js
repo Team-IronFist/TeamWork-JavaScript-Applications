@@ -303,6 +303,7 @@ let dataAccessor = (function() {
     function pagingItems(dataType, count){
     let filter = dataAccess.data(dataType);
     let query = requester.filter;
+    query.orderDesc('CreatedAt');
     query.take(count);
     return new Promise((resolve, reject) => {
         filter.get(query) // filter
