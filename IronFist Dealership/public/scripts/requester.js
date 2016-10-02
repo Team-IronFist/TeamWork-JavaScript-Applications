@@ -4,7 +4,8 @@ let requester = (function() {
 
     let dataAccess = new Everlive({
         appId: Authentication_Key,
-        token: localStorage.accessToken
+        token: localStorage.accessToken,
+        scheme: 'https'
     });
 
     let filter = new Everlive.Query();
