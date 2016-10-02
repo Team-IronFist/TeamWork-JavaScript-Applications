@@ -351,8 +351,8 @@ let dataAccessor = (function() {
             getCurrentUser
         },
         settings: {
-            getAllUsers, 
-            carsGetAll, 
+            getAllUsers,
+            carsGetAll,
             postsGetAll,
             commentsGetAll
         },
@@ -367,7 +367,7 @@ let users = dataAccessor.users,
     settings = dataAccessor.settings,
     pagingItems = dataAccessor.pagingItems;
 
-export { 
+export {
     users,
     posts,
     cars,

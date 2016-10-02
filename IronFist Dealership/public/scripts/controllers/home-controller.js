@@ -24,7 +24,7 @@ var homeController = function () {
 
 function viewLastCars(){
   let filterCars = {};
-  pagingItems('Car', 1)
+  pagingItems('Car', 3)
       .then((data) => {
           filterCars = data;
           templates.get('all-cars')
