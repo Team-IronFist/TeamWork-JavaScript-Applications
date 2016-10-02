@@ -43,7 +43,7 @@ function viewLastPosts(){
   pagingItems('Post', 3)
       .then((data) => {
           filterPosts = data;
-          templates.get('settings-all-posts')
+          templates.get('home-posts')
               .then(function (template) {
                   $('#last-posts').html(template(filterPosts));
               });
