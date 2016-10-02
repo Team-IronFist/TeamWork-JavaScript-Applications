@@ -1,11 +1,11 @@
-import {getCurrentUser} from './data.js'
+import { users } from './data.js'
 
 var validator = (function () {
     'use strict';
 
     function isUserLogged() {
         const promise = new Promise(function (resolve, reject) {
-            getCurrentUser()
+            users.getCurrentUser()
                 .then((data) => {
                     if (data.result) {
                         resolve(true);
