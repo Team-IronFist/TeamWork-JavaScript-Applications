@@ -27,6 +27,9 @@
     "everlive": "^1.7.2",
     "handlebars": "^4.0.5",
     "systemjs": "*",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "mocha": "^3.1.0",
+    "chai": "^3.5.0",
+    "sinon": "^1.17.5"
   }
 }
