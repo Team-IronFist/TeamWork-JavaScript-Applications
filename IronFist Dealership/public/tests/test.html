@@ -15,23 +15,32 @@
     <script src="./../bower_components/jquery/dist/jquery.js"></script>
     <!--<script src="./../bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
     <!--<script src="./../bower_components/handlebars/handlebars.js"></script>-->
-    <!--<script src="./../bower_components/everlive/min/everlive.all.min.js"></script>-->
+    <script src="./../bower_components/everlive/min/everlive.all.min.js"></script>
     <!--<script src="./../bower_components/jquery/dist/jquery.min.js"></script>-->
     <!--<script src="./../bower_components/sammy/lib/sammy.js"></script>-->
+
+    <script src="./../../node_modules/systemjs/dist/system.js"></script>
+    <script src="./system-config.js"></script>
+
+    <script>
+        System.import('tests');
+    </script>
 
     <!--test libs-->
 
     <script src="./../bower_components/mocha/mocha.js"></script>
     <script src="./../bower_components/chai/chai.js"></script>
-    <script src="./../bower_components/sinon/lib/sinon.js"></script>
+    <script src="./sinon-1.17.6.js"></script>
 
     <!--files for test-->
 
-    
+    <!--<script src="./../scripts/data.js"></script>
+    <script src="./../scripts/requester.js"></script>-->
 
     <!--tests-->
+    
 
-    <script src="./tests.js"></script>
+    <!--<script src="./tests.js"></script>-->
 </body>
 
 </html>
