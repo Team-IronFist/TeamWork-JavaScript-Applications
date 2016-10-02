@@ -19,6 +19,7 @@ import {commentsController} from './controllers/comment-controller.js'
     this.get('#/change-password', usersController.changePassword);
 
     this.get('#/cars/all', carController.all);
+    this.get('#/cars/user',carController.allFromUser)
     this.get('#/cars/add', carController.add);
     this.get('#/cars/:id', function (context) {
       let id = this.params['id'];
