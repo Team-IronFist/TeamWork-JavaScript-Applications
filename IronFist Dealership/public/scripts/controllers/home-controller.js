@@ -24,7 +24,7 @@ var homeController = function () {
 
 function viewLastCars(){
   let filterCars = {};
-  pagingItems('Car', 1)
+  pagingItems('Car', 3)
       .then((data) => {
           filterCars = data;
           templates.get('all-cars')
@@ -43,7 +43,7 @@ function viewLastPosts(){
   pagingItems('Post', 3)
       .then((data) => {
           filterPosts = data;
-          templates.get('settings-all-posts')
+          templates.get('home-posts')
               .then(function (template) {
                   $('#last-posts').html(template(filterPosts));
               });
