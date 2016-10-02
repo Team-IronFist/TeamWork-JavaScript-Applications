@@ -1,9 +1,10 @@
 import {templates} from './../template.js'
 import {popup} from './popup-controller.js'
-import {
-    getCurrentUser, postsGetAll, postCreate, postGetById,
-    postDeleteById, postEditById, Administrator_Role_Hash
-} from '../data.js'
+// import {
+//     getCurrentUser, postsGetAll, postCreate, postGetById,
+//     postDeleteById, postEditById, Administrator_Role_Hash
+// } from '../data.js'
+import { posts } from '../data.js'
 import {usersController} from './users-controller.js'
 
 
@@ -16,7 +17,7 @@ var postController = function () {
 
     function allFromUser(context) {
         let allUserPosts = [];
-        postsGetAll()
+        posts.postsGetAll()
             .then((data) => {
                 for (let i = 0; i < data.length; i++) {
                     if (localStorage.authKey === data[i].AuthorId) {
@@ -43,7 +44,7 @@ var postController = function () {
 
     function all(context) {
         let allposts = {};
-        postsGetAll()
+        posts.postsGetAll()
             .then((data) => {
                 allposts = data;
                 templates.get('posts')
@@ -59,7 +60,7 @@ var postController = function () {
 
     function create(context) {
         console.log('poop');
-        getCurrentUser()
+        posts.getCurrentUser()
             .then((data) => {
                 templates.get('post-create')
                     .then(function (template) {
@@ -70,7 +71,7 @@ var postController = function () {
                             let postDescription = $('#post-description').val();
                             let author = localStorage.displayName;
 
-                            postCreate(postTitle, postDescription, author, localStorage.authKey)
+                            posts.postCreate(postTitle, postDescription, author, localStorage.authKey)
                                 .then((data) => {
                                     document.location = '#/posts/user';
                                 })
@@ -87,7 +88,7 @@ var postController = function () {
             }
             ;
 
-            getCurrentUser()
+            posts.getCurrentUser()
                 .then((data) => {
                     console.log(data.result);
                     let currentUser = data.result;
@@ -102,7 +103,7 @@ var postController = function () {
                         });
                     }
 
-                    if (currentUser.Role === Administrator_Role_Hash) {
+                    if (currentUser.Role === posts.Administrator_Role_Hash) {
                         resolve({
                             authorized: true,
                             role: 'admin'
@@ -118,7 +119,7 @@ var postController = function () {
     function remove(context) {
         let id = context.path.substring(context.path.lastIndexOf('/') + 1);
 
-        postGetById(id)
+        posts.postGetById(id)
             .then((thisPost) => {
                 console.log(thisPost.AuthorId);
 
@@ -129,7 +130,7 @@ var postController = function () {
                             popup('#errorBox', Not_Allowed_To_Delete_Or_Edit_Post);
                             document.location = '#/posts/all';
                         } else {
-                            postDeleteById(id)
+                            posts.postDeleteById(id)
                                 .then(() => {
                                     popup('#infoBox', Successful_Deleted_Post);
                                     document.location = '#/posts/user';
@@ -148,7 +149,7 @@ var postController = function () {
     function edit(context) {
         let id = context.path.substring(context.path.lastIndexOf('/') + 1);
 
-        postGetById(id)
+        posts.postGetById(id)
             .then((thisPost) => {
                 console.log(thisPost.AuthorId);
                 isAuthorized(thisPost.AuthorId)
@@ -178,7 +179,7 @@ var postController = function () {
                                             author += Edited_By_Admin;
                                         }
 
-                                        postEditById(id, postTitle, postDescription, author)
+                                        posts.postEditById(id, postTitle, postDescription, author)
                                             .then(() => {
                                                 popup('#infoBox', Successful_Edited_Post);
                                                 document.location = '#/posts/user';

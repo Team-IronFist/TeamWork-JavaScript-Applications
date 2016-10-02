@@ -1,7 +1,8 @@
 import {templates} from './../template.js'
 import {createCar} from './../models/car.js'
 import {popup} from './popup-controller.js'
-import { carsGetAll, carCreate, getCarById, userGetById } from '../data.js'
+// import { carsGetAll, carCreate, getCarById, userGetById } from '../data.js'
+import { cars } from '../data.js'
 
 var carController = function () {
 
@@ -9,8 +10,7 @@ var carController = function () {
 
     function all(context) {
         let allCars = [];
-
-        carsGetAll()
+        cars.carsGetAll()
             .then((data) => {
                 allCars = data;
                 templates.get('all-cars')
@@ -59,7 +59,7 @@ var carController = function () {
 
                     // TODO Fix this if anyone find out how!
 
-                    carCreate(attributes)
+                    cars.carCreate(attributes)
                         .then(()=>{
                             popup('#infoBox', Car_Added_Message)
                             console.log(context)
@@ -89,10 +89,10 @@ var carController = function () {
         let car;
         let owner;
 
-        getCarById(id)
+        cars.getCarById(id)
             .then((data) => {
                 car = data;
-                return userGetById(car.Owner)
+                return cars.userGetById(car.Owner)
             })
             .then((data) => {
                 owner = data;

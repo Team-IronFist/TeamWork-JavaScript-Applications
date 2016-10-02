@@ -6,7 +6,7 @@ import {usersController} from './controllers/users-controller.js'
 import {carController} from './controllers/car-controller.js'
 import {validator} from './validator.js'
 import {commentsController} from './controllers/comment-controller.js'
-import {Administrator_Role_Hash} from './data.js'
+// import {Administrator_Role_Hash} from './data.js'
 
 (function () {
   var sammyApp = Sammy('#content', function () {

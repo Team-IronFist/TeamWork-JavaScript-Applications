@@ -1,10 +1,11 @@
 import {templates} from './../template.js'
 import {createUser} from './../models/user.js'
 import {popup} from './popup-controller.js'
-import {
-  registerUser, logUser, userChangePassword, userLogOut, userGetById,
-  userByUserName, userDelete, userEdit, Administrator_Role_Hash, getCurrentUser
-} from '../data.js'
+import { users } from '../data.js'
+// import {
+//   registerUser, logUser, userChangePassword, userLogOut, userGetById,
+//   userByUserName, userDelete, userEdit, Administrator_Role_Hash, getCurrentUser
+// } from '../data.js'
 
 var usersController = function () {
   const Successful_Login_Message = "Logged in successfully";
@@ -15,7 +16,7 @@ var usersController = function () {
   const Successful_Edit_User_Message = "You have edited this user successfully";
 
   let tryToLog = function (username, password) {
-    logUser(username, password)
+    users.logUser(username, password)
       .then((data) => {
         popup('#infoBox', Successful_Login_Message);
         document.location = '#/home'
@@ -29,7 +30,7 @@ var usersController = function () {
           $('#user-posts').removeClass('hidden');
           $('#link-addcar').removeClass('hidden');
         }
-        if (data.result.Role === Administrator_Role_Hash) {
+        if (data.result.Role === users.Administrator_Role_Hash) {
           $('#link-settings').removeClass('hidden');
         }
       })
@@ -76,7 +77,7 @@ var usersController = function () {
             DisplayName: displayName
           };
 
-          registerUser(username, password, attributes)
+          users.registerUser(username, password, attributes)
             .then(() => {
               popup('#infoBox', Successful_Registration_Message);
               tryToLog(username, password);
@@ -90,7 +91,7 @@ var usersController = function () {
   }
 
   function removeDataFromLocalStorage() {
-    userLogOut();
+    users.userLogOut();
     localStorage.removeItem("username");
     localStorage.removeItem("authKey");
     localStorage.removeItem("displayName");
@@ -124,7 +125,7 @@ var usersController = function () {
           username = $('#tb-current-username').val();
           password = $('#tb-current-password').val();
           newPassword = $('#tb-new-password').val();
-          userChangePassword(username, password, newPassword)
+          users.userChangePassword(username, password, newPassword)
             .then(() => {
               popup('#infoBox', Successful_Change_Password_Message);
             })
@@ -137,7 +138,7 @@ var usersController = function () {
 
   function getUserByUserName(context, username) {
     let foundUser;
-    userByUserName(username)
+    users.userByUserName(username)
       .then((user) => {
         foundUser = user;
         return templates.get('user-info')
@@ -154,7 +155,7 @@ var usersController = function () {
 
   function deleteUser(context) {
     let id = idFromUrl(context);
-    userDelete(id)
+    users.userDelete(id)
       .then(() => {
         console.log('User successfully deleted.');
         popup('#infoBox', Successful_Delete_User_Message);
@@ -169,7 +170,7 @@ var usersController = function () {
   function editUser(context) {
     let id = idFromUrl(context);
 
-    userGetById(id)
+    users.userGetById(id)
       .then((data) => {
         templates.get('settings-edit-user')
           .then(function (template) {
@@ -184,7 +185,7 @@ var usersController = function () {
                 return;
               }
 
-              userEdit(id, displayName, email)
+              users.userEdit(id, displayName, email)
                 .then(() => {
                   console.log('User successfully edited.');
                   popup('#infoBox', Successful_Edit_User_Message);
@@ -201,7 +202,7 @@ var usersController = function () {
   }
 
   function displayUser(context) {
-    getCurrentUser()
+    users.getCurrentUser()
       .then((data) => {
         templates.get('user-info')
           .then(function (template) {

@@ -1,14 +1,12 @@
 import {templates} from './../template.js'
 import {popup} from './popup-controller.js'
-import {
-    getCurrentUser, commentCreate, commentsGetAll
-} from '../data.js'
+import { comments } from '../data.js'
 import {usersController} from './users-controller.js'
 
 var commentsController = function () {
   function all(context) {
     let allComments = {};
-    commentsGetAll()
+    comments.commentsGetAll()
         .then((data) => {
             allComments = data;
             templates.get('all-comments')
@@ -24,7 +22,7 @@ var commentsController = function () {
 
 
   function add(context) {
-    getCurrentUser()
+    comments.getCurrentUser()
         .then((data) => {
             templates.get('comment-car')
                 .then(function (template) {
@@ -33,7 +31,7 @@ var commentsController = function () {
                     $('#btn-comment-add').on('click', function () {
                         let commentContent = $('#comment-content').val();
 
-                        commentCreate(commentContent, localStorage.authKey)
+                        comments.commentCreate(commentContent, localStorage.authKey)
                             .then((data) => {
                                 document.location = '#/cars/all';
                             })

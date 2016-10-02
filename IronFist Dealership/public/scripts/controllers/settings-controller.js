@@ -1,12 +1,13 @@
 import {templates} from './../template.js'
-import { getAllUsers, carsGetAll, postsGetAll,
-commentsGetAll } from '../data.js'
+import { settings } from '../data.js'
+// import { getAllUsers, carsGetAll, postsGetAll,
+// commentsGetAll } from '../data.js'
 
 var settingsController = function () {
 
   function allUsers(context) {
     let allUsers = {};
-    getAllUsers()
+    settings.getAllUsers()
         .then((data) => {
             allUsers = data.result;
             templates.get('settings-all-users')
@@ -21,7 +22,7 @@ var settingsController = function () {
 
   function allCars(context) {
     let allCars = {};
-    carsGetAll()
+    settings.carsGetAll()
         .then((data) => {
             allCars = data;
             templates.get('settings-all-cars')
@@ -37,7 +38,7 @@ var settingsController = function () {
 
   function allPosts(context) {
     let allPosts = {};
-    postsGetAll()
+    settings.postsGetAll()
         .then((data) => {
             allPosts = data;
             templates.get('settings-all-posts')
@@ -53,7 +54,7 @@ var settingsController = function () {
 
   function allComments(context) {
     let allComments = {};
-    commentsGetAll()
+    settings.commentsGetAll()
         .then((data) => {
             allComments = data;
             templates.get('settings-all-comments')
