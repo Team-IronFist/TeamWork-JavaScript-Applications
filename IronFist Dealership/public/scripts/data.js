@@ -1,14 +1,10 @@
 import {createUser} from './models/user.js'
 import {createCar} from './models/car.js'
+import {requester} from './requester.js'
 //import {createComment} from './models/comment.js'
 
-const Authentication_Key = 'zhumgwq8m2cn6p2e';
-const Administrator_Role_Hash = '372d6b60-8102-11e6-9eb4-3157f6092d16';
-
-let dataAccess = new Everlive({
-    appId: Authentication_Key,
-    token: localStorage.accessToken
-});
+let dataAccess = requester.dataAccess;
+let Administrator_Role_Hash = requester.Administrator_Role_Hash;
 
 function registerUser(username, password, attributes){
     return new Promise((resolve, reject) => {
@@ -81,7 +77,7 @@ function userChangePassword(username, password, newPassword) {
 
 function userByUserName(username) {
     return new Promise((resolve, reject) => {
-        let filter = new Everlive.Query();
+        let filter = requester.filter;
         filter.where().eq("Username", username);
 
         dataAccess.Users.get(filter)
@@ -258,18 +254,6 @@ function carsGetAll() {
                 resolve(data.result);
             });
     });
-
-    // return new Promise((resolve, reject) => {
-    //     dataAccess.Car.get()
-    //         .then(function (data) {
-    //             console.log(data.result);
-    //             resolve(data);
-    //         },
-    //         function (error) {
-    //             console.log(error);
-    //             reject(error);
-    //         });
-    // });
 }
 
 function commentsGetAll() {
@@ -317,7 +301,7 @@ function commentCreate(content, authKey) {
 
 function pagingItems(dataType, count){
   let filter = dataAccess.data(dataType);
-  let query = new Everlive.Query();
+let query = requester.filter;;
   query.take(count);
 return new Promise((resolve, reject) => {
   filter.get(query) // filter
