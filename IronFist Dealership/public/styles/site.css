@@ -84,6 +84,10 @@ tr, td, th {
     display: inline;
 }
 
+#logoHomeBar h2{
+    display: inline;
+}
+
 #loginNav {
     float: right;
 }
