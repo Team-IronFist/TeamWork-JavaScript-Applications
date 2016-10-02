@@ -1,12 +1,12 @@
 <div class=large-car-container>
     <h1>{{Make}} {{Model}}</h1>
-    <img class="large-car-picture" src={{#if Picture}}"{{picture}}"{{else}}"./images/car.jpg"{{/if}}>
+    <img class="large-car-picture" src="{{Image}}">
     <span><strong>Year:</strong> {{Year}}<span>
     <span><strong>Engine:</strong> {{Engine}}<span>
     <span><strong>Extras:</strong> {{Extras}}<span>
     <span><strong>Price:</strong> {{Price}}<span>
     <span><strong>Owner:</strong><a href="#/user/{{username}}"> {{username}}</a></span>
-    
+
     <span><strong>Comments:</strong> {{Comments}}<span>
     <span><a href="#/comment/add">Comment here</a></span>
 </div>
