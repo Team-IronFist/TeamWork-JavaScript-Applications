@@ -13,11 +13,6 @@ var contactController = function () {
       git: 'https://github.com/KristiyanVachev'
     },
     {
-      name: 'Miroslav Nikolov',
-      taUser: 'mirko123',
-      git: 'https://github.com/mirko123'
-    },
-    {
       name: 'Stoiko Neykov',
       taUser: 'StoikoNeykov',
       git: 'https://github.com/StoikoNeykov'
