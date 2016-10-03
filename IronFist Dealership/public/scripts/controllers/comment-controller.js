@@ -20,7 +20,6 @@ var commentsController = function () {
         .catch(console.log);
   }
 
-
   function add(context) {
     comments.getCurrentUser()
         .then((data) => {
