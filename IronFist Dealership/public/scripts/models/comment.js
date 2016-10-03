@@ -1,4 +1,4 @@
-function createComment()){
+function createComment(){
   class Comment {
     constructor(id, authorId, postId, content) {
       this._id = id;
