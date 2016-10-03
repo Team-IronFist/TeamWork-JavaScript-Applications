@@ -1,6 +1,7 @@
 import {templates} from './../template.js'
 import {popup} from './popup-controller.js'
 import { posts } from '../data.js'
+import {validator} from '../validator.js'
 import {usersController} from './users-controller.js'
 
 
@@ -44,17 +45,8 @@ var postController = function () {
         return new Promise((resolve, reject) => {
             posts.postsGetAll()
                 .then((data) => {
-                    allposts = data;
-                    //Parse date
-                    for(let result of allposts) {
-                        let parsedDate = result.CreatedAt + '';
-                        let indexOfGMT = parsedDate.indexOf("GMT");
-                        result.CreatedAt = parsedDate.substring(0, indexOfGMT);
+                    allposts = validator.parseDate(data);
 
-                        parsedDate = result.ModifiedAt + '';
-                        indexOfGMT = parsedDate.indexOf("GMT");
-                        result.ModifiedAt = parsedDate.substring(0, indexOfGMT);
-                    }
                     templates.get('posts')
                         .then(function (template) {
                                 resolve(template(allposts));
