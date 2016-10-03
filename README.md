@@ -2,7 +2,7 @@
 
 ## [Requirements](https://github.com/Team-IronFist/TeamWork-JavaScript-Applications/blob/master/Requirements.md) ##
 
-[Raw](rawgit.com/Team-IronFist/TeamWork-JavaScript-Applications/master/IronFist%20Dealership/public/index.html)
+[Raw](http://rawgit.com/Team-IronFist/TeamWork-JavaScript-Applications/master/IronFist%20Dealership/public/index.html)
 
 [Video](https://www.youtube.com/watch?v=Rqd9KQVAiZo&feature=youtu.be)
 
