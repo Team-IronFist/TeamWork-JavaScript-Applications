@@ -2,10 +2,6 @@ import {templates} from './../template.js'
 import {createUser} from './../models/user.js'
 import {popup} from './popup-controller.js'
 import { users } from '../data.js'
-// import {
-//   registerUser, logUser, userChangePassword, userLogOut, userGetById,
-//   userByUserName, userDelete, userEdit, Administrator_Role_Hash, getCurrentUser
-// } from '../data.js'
 
 var usersController = function () {
   const Successful_Login_Message = "Logged in successfully";
@@ -28,7 +24,6 @@ var usersController = function () {
           $('#link-login').addClass('hidden');
           $('#logout').removeClass('hidden');
           $('#user-posts').removeClass('hidden');
-          $('#user-cars').removeClass('hidden');
           $('#link-addcar').removeClass('hidden');
         }
         if (data.result.Role === users.Administrator_Role_Hash) {
@@ -103,7 +98,6 @@ var usersController = function () {
     removeDataFromLocalStorage();
     $('#logout').addClass('hidden');
     $('#user-posts').addClass('hidden');
-    $('#user-cars').addClass('hidden');
     popup('#infoBox', successfulLogoutMessage)
     $('#link-register').removeClass('hidden');
     $('#link-login').removeClass('hidden');
@@ -203,16 +197,18 @@ var usersController = function () {
       .catch(console.log);
   }
 
-  function displayUser(context) {
-    users.getCurrentUser()
-      .then((data) => {
-        templates.get('user-info')
-          .then(function (template) {
-            console.log(data.result);
-            context.$element().html(template(data.result));
-          });
-      })
-      .catch(console.log);
+  function displayUser() {
+      return new Promise((resolve, reject) => {
+        users.getCurrentUser()
+            .then((data) => {
+                templates.get('user-info')
+                    .then(function (template) {
+                        resolve(template(data.result));
+                    })
+                    .catch(reject);
+            })
+            .catch(reject);
+      });
   }
 
   return {

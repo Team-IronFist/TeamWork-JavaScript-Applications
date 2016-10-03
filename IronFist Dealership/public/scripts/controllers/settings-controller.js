@@ -1,7 +1,5 @@
 import {templates} from './../template.js'
 import { settings } from '../data.js'
-// import { getAllUsers, carsGetAll, postsGetAll,
-// commentsGetAll } from '../data.js'
 
 var settingsController = function () {
 

@@ -1,40 +1,11 @@
 import {templates} from './../template.js'
 import {createCar} from './../models/car.js'
 import {popup} from './popup-controller.js'
-// import { carsGetAll, carCreate, getCarById, userGetById } from '../data.js'
 import { cars } from '../data.js'
 
 var carController = function () {
 
     const Car_Added_Message = 'Car successfully added!';
-    const No_Cars_From_This_User = 'There are no cars published by this user'
-
-    function allFromUser(context) {
-        let allUserCars = [];
-        cars.carsGetAll()
-            .then((data) => {
-                for (let i = 0; i < data.length; i++) {
-                    if (localStorage.authKey === data[i].Owner) {
-                        allUserCars.push(data[i]);
-                    }
-                }
-                if (allUserCars.length === 0) {
-                    popup('#errorBox', No_Cars_From_This_User);
-                    document.location = "#/cars/user";
-                    return;
-                }
-                ;
-
-                templates.get('all-cars')
-                    .then(function (template) {
-                        context.$element().html(template(allUserCars));
-                    },
-                    function (error) {
-                        console.log(error);
-                    });
-            })
-            .catch(console.log);
-    }
 
     function all(context) {
         let allCars = [];
@@ -88,7 +59,7 @@ var carController = function () {
                     // TODO Fix this if anyone find out how!
 
                     cars.carCreate(attributes)
-                        .then(() => {
+                        .then(()=>{
                             popup('#infoBox', Car_Added_Message)
                             console.log(context)
                         })
@@ -102,7 +73,7 @@ var carController = function () {
                         // .then((template) => {
                         //     $('#content').html(template(allCars));
                         // })
-                        .catch((error) => {
+                        .catch((error)=>{
                             popup('#infoBox', error);
                             console.log(error);
                         });
@@ -152,8 +123,7 @@ var carController = function () {
     return {
         all: all,
         add: add,
-        showSingle: showSingle,
-        allFromUser: allFromUser
+        showSingle: showSingle
     }
 } ();
 
