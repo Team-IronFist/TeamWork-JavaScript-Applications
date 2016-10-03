@@ -45,6 +45,16 @@ var postController = function () {
             posts.postsGetAll()
                 .then((data) => {
                     allposts = data;
+                    //Parse date
+                    for(let result of allposts) {
+                        let parsedDate = result.CreatedAt + '';
+                        let indexOfGMT = parsedDate.indexOf("GMT");
+                        result.CreatedAt = parsedDate.substring(0, indexOfGMT);
+
+                        parsedDate = result.ModifiedAt + '';
+                        indexOfGMT = parsedDate.indexOf("GMT");
+                        result.ModifiedAt = parsedDate.substring(0, indexOfGMT);
+                    }
                     templates.get('posts')
                         .then(function (template) {
                                 resolve(template(allposts));
