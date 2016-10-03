@@ -7,7 +7,6 @@ mocha.setup('bdd');
 
 const expect = chai.expect;
 const SOME_TEMPLATE = Handlebars.compile("<div></div>");
-// const $sammy = $.sammy("#sammy");
 const SOME_USER = "some_user";
 const SOME_POST = {
     AuthorId: '1'
@@ -106,33 +105,66 @@ describe("Test Controllers", function() {
     });
     
     describe("User Controller Tests", function() {
-		beforeEach(function() {
-			sinon.stub(users, 'getCurrentUser')
-				.returns(Promise.resolve(SOME_USER));
-                
-            sinon.stub(templates, 'get')
-                .returns(Promise.resolve(SOME_TEMPLATE));
-		});
+        describe("displayUser Tests", function() {
+            beforeEach(function() {
+                sinon.stub(users, 'getCurrentUser')
+                    .returns(Promise.resolve(SOME_USER));
+                    
+                sinon.stub(templates, 'get')
+                    .returns(Promise.resolve(SOME_TEMPLATE));
+            });
 
-		afterEach(function() {
-			users.getCurrentUser.restore();
-            templates.get.restore();
-		});
+            afterEach(function() {
+                users.getCurrentUser.restore();
+                templates.get.restore();
+            });
 
-        it("expect users.getCurrentUser() to be called exactly once", function(done) {
-            usersController.displayUser()
-                .then(() => {
-                    expect(users.getCurrentUser.calledOnce).to.be.true;
-                })
-                .then(done, done);
+            it("expect users.getCurrentUser() to be called exactly once", function(done) {
+                usersController.displayUser()
+                    .then(() => {
+                        expect(users.getCurrentUser.calledOnce).to.be.true;
+                    })
+                    .then(done, done);
+            });
+            
+            it("expect templates.get() to be called exactly once", function(done) {
+                usersController.displayUser()
+                    .then(() => {
+                        expect(templates.get.calledOnce).to.be.true;
+                    })
+                    .then(done, done);
+            });
         });
-        
-        it("expect templates.get() to be called exactly once", function(done) {
-            usersController.displayUser()
-                .then(() => {
-                    expect(templates.get.calledOnce).to.be.true;
-                })
-                .then(done, done);
+
+        describe("getUserByUserName Tests", function() {
+            beforeEach(function() {
+                sinon.stub(users, 'userByUserName')
+                    .returns(Promise.resolve(SOME_USER));
+                    
+                sinon.stub(templates, 'get')
+                    .returns(Promise.resolve(SOME_TEMPLATE));
+            });
+
+            afterEach(function() {
+                users.userByUserName.restore();
+                templates.get.restore();
+            });
+
+            it("expect users.userByUserName() to be called exactly once", function(done) {
+                usersController.getUserByUserName()
+                    .then(() => {
+                        expect(users.userByUserName.calledOnce).to.be.true;
+                    })
+                    .then(done, done);
+            });
+            
+            it("expect templates.get() when user found to be called exactly once", function(done) {
+                usersController.getUserByUserName()
+                    .then(() => {
+                        expect(templates.get.calledOnce).to.be.true;
+                    })
+                    .then(done, done);
+            });
         });
     });
 });
