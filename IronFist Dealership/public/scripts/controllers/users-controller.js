@@ -39,6 +39,7 @@ var usersController = function () {
     removeDataFromLocalStorage();
     $('#logout').addClass('hidden');
     $('#user-posts').addClass('hidden');
+    $('#user-cars').addClass('hidden');
     popup('#infoBox', successfulLogoutMessage)
     $('#link-register').removeClass('hidden');
     $('#link-login').removeClass('hidden');
