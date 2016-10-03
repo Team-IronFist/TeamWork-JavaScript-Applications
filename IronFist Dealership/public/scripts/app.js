@@ -20,6 +20,7 @@ import { commentsController } from './controllers/comment-controller.js'
     var sammyApp = Sammy('#content', function () {
 
         this.get('#/', homeController.all);
+        this.get('#/home', homeController.all);
 
         this.get('#/register', function (context) {
             usersController.register()
