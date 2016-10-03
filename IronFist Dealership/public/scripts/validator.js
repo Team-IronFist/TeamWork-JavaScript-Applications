@@ -19,10 +19,24 @@ var validator = (function () {
         return value === '';
     }
 
+    function parseDate(data) {
+        for(let result of data) {
+            let parsedDate = result.CreatedAt + '';
+            let indexOfGMT = parsedDate.indexOf("GMT");
+            result.CreatedAt = parsedDate.substring(0, indexOfGMT);
+
+            parsedDate = result.ModifiedAt + '';
+            indexOfGMT = parsedDate.indexOf("GMT");
+            result.ModifiedAt = parsedDate.substring(0, indexOfGMT);
+        }
+        return data;
+    }
+
     return {
         isUserLogged,
         isBasicType,
-        isEmptyString
+        isEmptyString,
+        parseDate
     };
 }());
 
