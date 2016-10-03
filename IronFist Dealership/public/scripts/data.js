@@ -3,11 +3,11 @@ import {createCar} from './models/car.js'
 import {requester} from './requester.js'
 //import {createComment} from './models/comment.js'
 
-let dataAccessor = (function() {
+let dataAccessor = (function () {
     let dataAccess = requester.dataAccess;
     let Administrator_Role_Hash = requester.Administrator_Role_Hash;
 
-    function registerUser(username, password, attributes){
+    function registerUser(username, password, attributes) {
         return new Promise((resolve, reject) => {
             dataAccess.Users.register(username, password, attributes,
                 function (data) {
@@ -40,39 +40,39 @@ let dataAccessor = (function() {
                     console.log(data.result);
                     localStorage.setItem("accessToken", data.result.access_token);
                     dataAccess.Users.currentUser()
-                    .then(function (data) {
-                        localStorage.setItem("username", data.result.Username);
-                        localStorage.setItem("displayName", data.result.DisplayName);
-                        localStorage.setItem("authKey", data.result.Id);
-                        console.log(data);
-                        resolve(data);
+                        .then(function (data) {
+                            localStorage.setItem("username", data.result.Username);
+                            localStorage.setItem("displayName", data.result.DisplayName);
+                            localStorage.setItem("authKey", data.result.Id);
+                            console.log(data);
+                            resolve(data);
                         },
                         function (error) {
                             console.log(error);
                             reject(error);
-                    });
+                        });
                 },
                 function (error) {
                     console.log(error);
                     reject(error);
-            });
+                });
         });
     }
 
     function userChangePassword(username, password, newPassword) {
         return new Promise((resolve, reject) => {
             dataAccess.Users.changePassword(username, // username
-                    password, // current password
-                    newPassword, // new password
-                    true, // keep the user's tokens
-                    function (data) {
-                        console.log(data.result);
-                        resolve(data);
-                    },
-                    function (error) {
-                        console.log(error);
-                        reject(error);
-                    });
+                password, // current password
+                newPassword, // new password
+                true, // keep the user's tokens
+                function (data) {
+                    console.log(data.result);
+                    resolve(data);
+                },
+                function (error) {
+                    console.log(error);
+                    reject(error);
+                });
         });
     }
 
@@ -95,10 +95,10 @@ let dataAccessor = (function() {
     function userDelete(id) {
         return new Promise((resolve, reject) => {
             dataAccess.Users.destroySingle({ Id: id },
-                function(){
+                function () {
                     resolve();
                 },
-                function(error){
+                function (error) {
                     reject(error);
                 });
         });
@@ -107,10 +107,10 @@ let dataAccessor = (function() {
     function userEdit(id, displayName, email) {
         return new Promise((resolve, reject) => {
             dataAccess.Users.updateSingle({ 'Id': id, 'DisplayName': displayName, 'Email': email },
-                function(){
+                function () {
                     resolve();
                 },
-                function(error){
+                function (error) {
                     reject(error);
                 });
         });
@@ -136,8 +136,8 @@ let dataAccessor = (function() {
 
     function userGetById(id) {
         return new Promise((resolve, reject) => {
-        dataAccess.Users.getById(id)
-            .then(function (data) {
+            dataAccess.Users.getById(id)
+                .then(function (data) {
                     console.log(data.result);
                     resolve(data.result);
                 },
@@ -145,7 +145,7 @@ let dataAccessor = (function() {
                     console.log(error);
                     reject(error);
                 }
-            );
+                );
         });
     }
 
@@ -167,7 +167,7 @@ let dataAccessor = (function() {
                 'Description': description,
                 'Author': author,
                 'AuthorId': localStorage.authKey
-                },
+            },
                 function (data) {
                     resolve(data);
                 },
@@ -180,8 +180,8 @@ let dataAccessor = (function() {
     function postGetById(id) {
         let queryPosts = dataAccess.data('Post');
         return new Promise((resolve, reject) => {
-        queryPosts.getById(id)
-            .then(function (data) {
+            queryPosts.getById(id)
+                .then(function (data) {
                     console.log(data.result);
                     resolve(data.result);
                 },
@@ -189,7 +189,7 @@ let dataAccessor = (function() {
                     console.log(error);
                     reject(error);
                 }
-            );
+                );
         });
     }
 
@@ -197,10 +197,10 @@ let dataAccessor = (function() {
         let queryPosts = dataAccess.data('Post');
         return new Promise((resolve, reject) => {
             queryPosts.destroySingle({ Id: id },
-                function(){
+                function () {
                     resolve();
                 },
-                function(error){
+                function (error) {
                     console.log(error);
                     reject(error);
                 });
@@ -211,10 +211,10 @@ let dataAccessor = (function() {
         let queryPosts = dataAccess.data('Post');
         return new Promise((resolve, reject) => {
             queryPosts.updateSingle({ Id: id, Title: postTitle, Description: postDescription, Author: author },
-                function(){
+                function () {
                     resolve();
                 },
-                function(error){
+                function (error) {
                     console.log(error);
                     reject(error);
                 });
@@ -233,34 +233,34 @@ let dataAccessor = (function() {
     }
 
     function commentCreate(content, authKey) {
-    let queryComments = dataAccess.data('Comment');
-    return new Promise((resolve, reject) => {
-        queryComments.create({
-            'Content': content,
-            'Author': localStorage.username,
-            'Owner': localStorage.authKey
+        let queryComments = dataAccess.data('Comment');
+        return new Promise((resolve, reject) => {
+            queryComments.create({
+                'Content': content,
+                'Author': localStorage.username,
+                'Owner': localStorage.authKey
             },
-            function (data) {
-                resolve(data);
-            },
-            function (error) {
-                reject(error);
-            });
-    });
+                function (data) {
+                    resolve(data);
+                },
+                function (error) {
+                    reject(error);
+                });
+        });
     }
 
     function carCreate(attributes) {
         let queryCar = dataAccess.data('Car');
         var carModule = createCar();
         let car = carModule.getCar(
-        attributes.Id,
-        attributes.AuthorId,
-        attributes.Make,
-        attributes.Engine,
-        attributes.Year,
-        attributes.Price,
-        attributes.HorsePowers,
-        attributes.Extras);
+            attributes.Id,
+            attributes.AuthorId,
+            attributes.Make,
+            attributes.Engine,
+            attributes.Year,
+            attributes.Price,
+            attributes.HorsePowers,
+            attributes.Extras);
         return new Promise((resolve, reject) => {
             queryCar.create(attributes,
                 function (data) {
@@ -284,36 +284,36 @@ let dataAccessor = (function() {
         });
     }
 
-    function getCarById(id){
+    function getCarById(id) {
         let queryCars = dataAccess.data('Car');
         return new Promise((resolve, reject) => {
-        queryCars.getById(id)
-            .then(function (data) {
+            queryCars.getById(id)
+                .then(function (data) {
                     resolve(data.result);
                 },
                 function (error) {
                     console.log(error);
                     reject(error);
                 }
-            );
+                );
         });
     }
 
-    function pagingItems(dataType, count){
-    let filter = dataAccess.data(dataType);
-    let query = requester.filter;
-    query.take(count);
-    return new Promise((resolve, reject) => {
-        filter.get(query) // filter
-            .then(function(data){
-                console.log(JSON.stringify(data));
-                resolve(data.result);
+    function pagingItems(dataType, count) {
+        let filter = dataAccess.data(dataType);
+        let query = requester.filter;
+        query.take(count);
+        return new Promise((resolve, reject) => {
+            filter.get(query) // filter
+                .then(function (data) {
+                    console.log(JSON.stringify(data));
+                    resolve(data.result);
                 },
-                function(error){
-                console.log(JSON.stringify(error));
-                reject(error);
+                function (error) {
+                    console.log(JSON.stringify(error));
+                    reject(error);
                 });
-            });
+        });
     }
 
     return {
@@ -350,8 +350,8 @@ let dataAccessor = (function() {
             getCurrentUser
         },
         settings: {
-            getAllUsers, 
-            carsGetAll, 
+            getAllUsers,
+            carsGetAll,
             postsGetAll,
             commentsGetAll
         },
@@ -368,12 +368,12 @@ let users = dataAccessor.users,
     pagingItems = dataAccessor.pagingItems,
     getCurrentUser = dataAccessor.getCurrentUser;
 
-export { 
-    users,
-    posts,
-    cars,
-    comments,
-    settings,
-    pagingItems,
-    getCurrentUser
- }
+export {
+users,
+posts,
+cars,
+comments,
+settings,
+pagingItems,
+getCurrentUser
+}
