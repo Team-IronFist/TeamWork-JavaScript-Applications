@@ -154,7 +154,6 @@ let dataAccessor = (function() {
         return new Promise((resolve, reject) => {
             queryPosts.get()
                 .then(function (data) {
-                    console.log(data.result);
                     resolve(data.result);
                 });
         });
@@ -303,7 +302,6 @@ let dataAccessor = (function() {
     function pagingItems(dataType, count){
     let filter = dataAccess.data(dataType);
     let query = requester.filter;
-    query.orderDesc('CreatedAt');
     query.take(count);
     return new Promise((resolve, reject) => {
         filter.get(query) // filter
@@ -352,12 +350,13 @@ let dataAccessor = (function() {
             getCurrentUser
         },
         settings: {
-            getAllUsers,
-            carsGetAll,
+            getAllUsers, 
+            carsGetAll, 
             postsGetAll,
             commentsGetAll
         },
         pagingItems,
+        getCurrentUser
     };
 })()
 
@@ -366,13 +365,15 @@ let users = dataAccessor.users,
     cars = dataAccessor.cars,
     comments = dataAccessor.comments,
     settings = dataAccessor.settings,
-    pagingItems = dataAccessor.pagingItems;
+    pagingItems = dataAccessor.pagingItems,
+    getCurrentUser = dataAccessor.getCurrentUser;
 
-export {
+export { 
     users,
     posts,
     cars,
     comments,
     settings,
-    pagingItems
+    pagingItems,
+    getCurrentUser
  }
