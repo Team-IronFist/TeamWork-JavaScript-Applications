@@ -24,6 +24,7 @@ var usersController = function () {
           $('#link-login').addClass('hidden');
           $('#logout').removeClass('hidden');
           $('#user-posts').removeClass('hidden');
+          $('#user-cars').removeClass('hidden');
           $('#link-addcar').removeClass('hidden');
         }
         if (data.result.Role === users.Administrator_Role_Hash) {
@@ -98,6 +99,7 @@ var usersController = function () {
     removeDataFromLocalStorage();
     $('#logout').addClass('hidden');
     $('#user-posts').addClass('hidden');
+     $('#user-cars').addClass('hidden');
     popup('#infoBox', successfulLogoutMessage)
     $('#link-register').removeClass('hidden');
     $('#link-login').removeClass('hidden');
